@@ -25,6 +25,7 @@ import { colors } from '@/constants';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import { motion } from 'framer-motion';
 
 interface Props {}
 const images = ['slide.jpeg', 'slide1.jpeg', 'slide2.jpeg'];
@@ -75,6 +76,14 @@ export const Landing = ({}: Props) => {
         </CarouselContent>
 
         <Flex
+          as={motion.div}
+          initial={{ scale: 0.6, opacity: 0 }}
+          whileInView={{
+            scale: 1,
+            opacity: 1,
+            transition: { duration: 0.5 },
+          }}
+          viewport={{ once: true }}
           position={'absolute'}
           justifyContent={'space-between'}
           alignItems={'center'}
@@ -143,6 +152,14 @@ export const Landing = ({}: Props) => {
 const CaptionText = () => {
   return (
     <Flex
+      as={motion.div}
+      initial={{ scale: 0.6, opacity: 0 }}
+      whileInView={{
+        scale: 1,
+        opacity: 1,
+        transition: { duration: 0.5 },
+      }}
+      viewport={{ once: true }}
       flexDir={'column'}
       gap={3}
       position={'absolute'}

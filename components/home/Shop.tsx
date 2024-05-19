@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { DarkContainer } from '../ui/DarkContainer';
 import { colors } from '@/constants';
+import { motion, createMotionComponent } from 'framer-motion';
 
 interface Props {}
 
@@ -24,14 +25,34 @@ export const Shop = ({}: Props) => {
         width={{ base: '90%', md: '80%' }}
         mx={'auto'}
       >
-        <Image
-          alt="image"
-          src="/people.png"
+        <Box
+          as={motion.div}
+          initial={{ x: -50, opacity: 0 }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+            transition: { delay: 0.3, duration: 0.3 },
+          }}
+          viewport={{ once: true }}
           width={'100%'}
-          height={'auto'}
-          objectFit={'cover'}
-        />
+        >
+          <Image
+            alt="image"
+            src="/people.png"
+            width={'100%'}
+            height={'auto'}
+            objectFit={'cover'}
+          />
+        </Box>
         <Flex
+          as={motion.div}
+          initial={{ x: 50, opacity: 0 }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+            transition: { delay: 0.3, duration: 0.3 },
+          }}
+          viewport={{ once: true }}
           flexDir={'column'}
           gap={3}
           alignItems={'center'}
@@ -59,6 +80,10 @@ export const Shop = ({}: Props) => {
             width={'fit-content'}
             px={10}
             borderRadius={50}
+            _hover={{
+              bg: colors.textOrange,
+              transition: 'all 0.3s ease',
+            }}
           >
             Shop now
           </Button>

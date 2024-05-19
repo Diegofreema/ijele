@@ -9,6 +9,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { DarkContainer } from '../ui/DarkContainer';
+import { motion } from 'framer-motion';
 
 interface Props {}
 
@@ -31,7 +32,19 @@ export const Membership = ({}: Props) => {
 const Left = () => {
   const color = useColorModeValue('white', colors.dark);
   return (
-    <Box display={'flex'} flexDirection={'column'} gap={5}>
+    <Box
+      as={motion.div}
+      initial={{ x: -50, opacity: 0 }}
+      whileInView={{
+        x: 0,
+        opacity: 1,
+        transition: { duration: 0.3, ease: 'easeIn' },
+      }}
+      viewport={{ once: true }}
+      display={'flex'}
+      flexDirection={'column'}
+      gap={5}
+    >
       <Text textColor={color} fontFamily={'var(--font-rubik)'} fontSize={20}>
         Membership
       </Text>
@@ -60,7 +73,17 @@ const Left = () => {
 
 const Right = () => {
   return (
-    <Box width="100%">
+    <Box
+      as={motion.div}
+      initial={{ x: 50, opacity: 0 }}
+      whileInView={{
+        x: 0,
+        opacity: 1,
+        transition: { duration: 0.3, ease: 'easeIn' },
+      }}
+      viewport={{ once: true }}
+      width="100%"
+    >
       <Image
         alt="image"
         src="/member.png"

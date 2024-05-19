@@ -1,6 +1,7 @@
 'use client';
 import { colors } from '@/constants';
 import { Box, Button, ResponsiveValue, Text } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { Pause, Play } from 'lucide-react';
 import React, { LegacyRef, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
@@ -37,6 +38,14 @@ export function VideoComponent({ height, fontSize }: Props) {
   };
   return (
     <Box
+      as={motion.div}
+      initial={{ opacity: 0, scale: 0.5 }}
+      whileInView={{
+        opacity: 1,
+        scale: [1, 1.05, 1],
+        transition: { delay: 0.3 * (Math.random() * 2), duration: 0.3 },
+      }}
+      viewport={{ once: true }}
       flex={1}
       height={height}
       borderRadius={5}

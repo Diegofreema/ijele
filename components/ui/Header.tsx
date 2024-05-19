@@ -62,6 +62,7 @@ export const Header = ({}: Props) => {
         opacity: 1,
         transition: { duration: 0.5, type: 'spring', damping: 9 },
       }}
+      viewport={{ once: true }}
       bg={bg}
       position={'fixed'}
       top={0}

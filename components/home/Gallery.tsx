@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'next-view-transitions';
 import { LightContainer } from '../ui/LightContainer';
+import { motion } from 'framer-motion';
 
 interface Props {}
 
@@ -53,7 +54,19 @@ export const Gallery = ({}: Props) => {
         maxWidth={{ base: '90%', md: '80%' }}
         mx={'auto'}
       >
-        <GridItem rowSpan={1} height={'300px'} colSpan={{ base: 1, md: 2 }}>
+        <GridItem
+          as={motion.div}
+          initial={{ x: -50, opacity: 0 }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+            transition: { delay: 0.3, duration: 0.3 },
+          }}
+          viewport={{ once: true }}
+          rowSpan={1}
+          height={'300px'}
+          colSpan={{ base: 1, md: 2 }}
+        >
           <Image
             alt="image"
             src="/member.png"
@@ -63,7 +76,18 @@ export const Gallery = ({}: Props) => {
             borderRadius={10}
           />
         </GridItem>
-        <GridItem rowSpan={1} height={'300px'} colSpan={1}>
+        <GridItem
+          as={motion.div}
+          initial={{ x: 50, opacity: 0 }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+            transition: { delay: 0.3, duration: 0.3 },
+          }}
+          rowSpan={1}
+          height={'300px'}
+          colSpan={1}
+        >
           <Image
             alt="image"
             src="/member.png"
@@ -73,7 +97,18 @@ export const Gallery = ({}: Props) => {
             borderRadius={10}
           />
         </GridItem>
-        <GridItem rowSpan={1} height={'300px'} colSpan={1}>
+        <GridItem
+          as={motion.div}
+          initial={{ x: -50, opacity: 0 }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+            transition: { delay: 0.3, duration: 0.3 },
+          }}
+          rowSpan={1}
+          height={'300px'}
+          colSpan={1}
+        >
           <Image
             alt="image"
             src="/member.png"
@@ -83,7 +118,18 @@ export const Gallery = ({}: Props) => {
             borderRadius={10}
           />
         </GridItem>
-        <GridItem rowSpan={1} height={'300px'} colSpan={{ base: 1, md: 2 }}>
+        <GridItem
+          as={motion.div}
+          initial={{ x: 50, opacity: 0 }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+            transition: { delay: 0.3, duration: 0.3 },
+          }}
+          rowSpan={1}
+          height={'300px'}
+          colSpan={{ base: 1, md: 2 }}
+        >
           <Image
             alt="image"
             src="/member.png"

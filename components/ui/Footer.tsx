@@ -3,6 +3,7 @@ import { Box, SimpleGrid, Text, useColorModeValue } from '@chakra-ui/react';
 import { DarkContainer } from './DarkContainer';
 import { Link } from 'next-view-transitions';
 import { colors } from '@/constants';
+import { motion } from 'framer-motion';
 
 interface Props {}
 
@@ -74,7 +75,7 @@ export const Footer = ({}: Props) => {
   return (
     <DarkContainer height={{ base: '100vh', md: '300px' }}>
       <SimpleGrid
-        columns={{ base: 1, md: 4 }}
+        columns={{ base: 1, md: 5 }}
         gap={5}
         width={{ base: '80%', md: '90%' }}
         mx={'auto'}
@@ -91,8 +92,18 @@ export const Footer = ({}: Props) => {
             </Text>
             <Box display={'flex'} flexDir={'column'} gap={5}>
               {link.subLinks.map((subLink) => (
-                <Link href={subLink.href} key={subLink.href}>
+                <Link href={subLink.href} key={subLink.href} className="w-fit">
                   <Text
+                    as={motion.p}
+                    initial={{ x: 0 }}
+                    whileHover={{
+                      x: 20,
+
+                      transition: {
+                        type: 'spring',
+                      },
+                    }}
+                    viewport={{ once: true }}
                     key={subLink.label}
                     textColor={color}
                     fontSize={{ base: 10, md: 15 }}

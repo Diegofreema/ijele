@@ -2,6 +2,7 @@
 import { Box, Image, SimpleGrid } from '@chakra-ui/react';
 import { LightContainer } from '../ui/LightContainer';
 import { MyText } from '../ui/MyText';
+import { motion } from 'framer-motion';
 
 interface Props {}
 
@@ -17,15 +18,27 @@ export const Sponsor = ({}: Props) => {
       />
       <SimpleGrid gap={5} mt={5} columns={{ base: 2, md: 4, lg: 6 }}>
         {array.map((_, index) => (
-          <Image
-            alt="image"
+          <Box
+            as={motion.image}
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{
+              y: 0,
+              opacity: 1,
+              transition: { delay: 0.3 * index, duration: 0.3 },
+            }}
+            viewport={{ once: true }}
             key={index}
-            src="/member.png"
-            maxWidth={100}
-            height={100}
-            borderRadius={200}
-            objectFit={'cover'}
-          />
+          >
+            <Image
+              alt="image"
+              key={index}
+              src="/member.png"
+              maxWidth={100}
+              height={100}
+              borderRadius={200}
+              objectFit={'cover'}
+            />
+          </Box>
         ))}
       </SimpleGrid>
     </LightContainer>

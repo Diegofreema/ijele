@@ -13,6 +13,7 @@ import { Wrapper } from '../ui/wrapper';
 import { MyText } from '../ui/MyText';
 import { colors } from '@/constants';
 import { Link } from 'next-view-transitions';
+import { motion } from 'framer-motion';
 
 interface Props {}
 const fourArray = [1, 2, 3, 4];
@@ -42,8 +43,8 @@ export const News = ({}: Props) => {
           </Link>
         </Flex>
         <SimpleGrid columns={{ base: 1, md: 4 }} gap={30}>
-          {fourArray.map((item) => (
-            <NewCards key={item} />
+          {fourArray.map((item, i) => (
+            <NewCards index={i} key={item} />
           ))}
         </SimpleGrid>
       </Box>
@@ -51,12 +52,30 @@ export const News = ({}: Props) => {
   );
 };
 
-const NewCards = () => {
+const NewCards = ({ index }: { index: number }) => {
   const color = useColorModeValue('#181818', '#fff');
   const bg = useColorModeValue('#fff', '#181818');
 
   return (
-    <Card borderRadius={5} cursor={'pointer'}>
+    <Card
+      as={motion.div}
+      initial={{ y: 50, opacity: 0 }}
+      whileInView={{
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: 0.5,
+          type: 'spring',
+          damping: '8',
+          ease: 'easeInOut',
+          delay: 0.3 * index,
+        },
+      }}
+      whileHover={{ y: -20 }}
+      viewport={{ once: true }}
+      borderRadius={5}
+      cursor={'pointer'}
+    >
       <Image
         src="/news.png"
         alt="Green double couch with wooden legs"
