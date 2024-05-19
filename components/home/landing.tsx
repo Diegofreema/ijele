@@ -24,6 +24,7 @@ import { ArrowDown, ChevronDown, Play } from 'lucide-react';
 import { colors } from '@/constants';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 
 interface Props {}
 const images = ['slide.jpeg', 'slide1.jpeg', 'slide2.jpeg'];
@@ -80,12 +81,14 @@ export const Landing = ({}: Props) => {
           width={{ base: '90%', md: '50%' }}
           bottom={'15%'}
           zIndex={10}
-          right={'10%'}
+          right={{ base: '18%', md: '10%' }}
         >
           <Button
+            hideBelow={'md'}
             onClick={onScrollToNextWindow}
             borderColor={'white'}
-            border={'1px'}
+            borderWidth={'1px'}
+            role={'group'}
             p={3}
             borderRadius={50}
             width={'40px'}
@@ -95,9 +98,13 @@ export const Landing = ({}: Props) => {
             alignItems={'center'}
             bg="transparent"
           >
-            <ChevronDown color="white" size={25} />
+            <ChevronDownIcon
+              _groupHover={{ color: 'black' }}
+              color="white"
+              boxSize={25}
+            />
           </Button>
-          <Flex gap={2} alignItems={'center'}>
+          <Flex gap={2} alignItems={'center'} hideBelow={'md'}>
             {images.map((_, i) => (
               <Box
                 key={i}
@@ -110,8 +117,8 @@ export const Landing = ({}: Props) => {
               />
             ))}
           </Flex>
-          <Flex>
-            <Text fontWeight={'bold'} textColor={'white'}>
+          <Flex flexDirection={{ base: 'column', md: 'row' }}>
+            <Text hideBelow={'md'} fontWeight={'bold'} textColor={'white'}>
               Next
             </Text>
 
@@ -141,7 +148,7 @@ const CaptionText = () => {
       position={'absolute'}
       zIndex={10}
       top={'30%'}
-      left={20}
+      left={{ base: 4, md: 20 }}
     >
       <Heading
         fontSize={{ base: '3xl', md: '7xl' }}
@@ -151,7 +158,11 @@ const CaptionText = () => {
       >
         Ijele SC
       </Heading>
-      <Text textColor={'#eee'} width={{ base: '100%', md: '60%' }}>
+      <Text
+        textColor={'#eee'}
+        width={{ base: '90%', md: '60%' }}
+        fontSize={{ base: 12, md: 15 }}
+      >
         With a commitment to excellence, teamwork and community, we strive to
         inspire both on and off the pitch, join us on our journey as we chase
         victory, celebrate resilience, and embody the true essence of the

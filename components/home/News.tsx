@@ -26,7 +26,7 @@ export const News = ({}: Props) => {
         <Flex my={10} justifyContent={'space-between'} alignItems={'center'}>
           <Text
             textColor={color}
-            fontSize={20}
+            fontSize={{ base: 15, md: 20 }}
             fontFamily={'var(--font-rubik)'}
           >
             Latest News
@@ -34,7 +34,7 @@ export const News = ({}: Props) => {
           <Link href="/news">
             <Text
               textColor={colors.textOrange}
-              fontSize={20}
+              fontSize={{ base: 15, md: 20 }}
               fontFamily={'var(--font-rubik)'}
             >
               All News

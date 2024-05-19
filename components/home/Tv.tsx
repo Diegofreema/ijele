@@ -19,11 +19,15 @@ export const Tv = ({}: Props) => {
       pb={50}
     >
       <Flex my={10} justifyContent={'space-between'} alignItems={'center'}>
-        <MyText fontSize={20} fontWeight={'bold'} text=" Latest News" />
+        <MyText
+          fontSize={{ base: 15, md: 20 }}
+          fontWeight={'bold'}
+          text=" Latest News"
+        />
         <Link href="/tv">
           <Text
             textColor={colors.textOrange}
-            fontSize={20}
+            fontSize={{ base: 15, md: 20 }}
             fontFamily={'var(--font-rubik)'}
           >
             All News

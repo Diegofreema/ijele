@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { fonts } from '@/utils/font';
 import { AppWrapper } from '@/components/ui/AppWrapper';
 import { Header } from '@/components/ui/Header';
+import { Footer } from '@/components/ui/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           <AppWrapper>
             <Header />
             {children}
+            <Footer />
           </AppWrapper>
         </Providers>
       </body>

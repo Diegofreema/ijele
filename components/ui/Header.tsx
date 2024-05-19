@@ -4,16 +4,22 @@ import {
   Box,
   Button,
   Flex,
+  IconButton,
+  ResponsiveValue,
   Text,
   useColorMode,
   useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { Link } from 'next-view-transitions';
 import { MyText } from './MyText';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, MenuIcon } from 'lucide-react';
+import { MobileDrawer } from './MobileNav';
+import { MouseEventHandler, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface Props {}
-const links = [
+export const links = [
   {
     href: '/news',
     label: 'News',
@@ -45,8 +51,17 @@ const links = [
 ];
 export const Header = ({}: Props) => {
   const bg = useColorModeValue('white', '#181818');
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box
+      as={motion.div}
+      initial={{ y: -20, opacity: 0 }}
+      whileInView={{
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.5, type: 'spring', damping: 9 },
+      }}
       bg={bg}
       position={'fixed'}
       top={0}
@@ -67,16 +82,34 @@ export const Header = ({}: Props) => {
         </Link>
         <Links />
         <ToggleDarkMode />
+        <MobileDrawer isOpen={isOpen} onClose={onClose} />
+        <IconButton
+          hideFrom="md"
+          onClick={onOpen}
+          aria-label="button"
+          icon={<MenuIcon />}
+        />
       </Flex>
     </Box>
   );
 };
 
-const Links = () => {
+export const Links = ({
+  flexDirection = 'row',
+  onClose,
+}: {
+  flexDirection?: 'row' | 'column' | ResponsiveValue<'row' | 'column'>;
+  onClose?: () => void;
+}) => {
+  const onPress = (e: any) => {
+    e.stopPropagation();
+    onClose && onClose();
+  };
+
   return (
-    <Flex gap={5}>
+    <Flex gap={5} hideBelow={'md'} flexDirection={flexDirection}>
       {links.map(({ href, label }) => (
-        <Link key={href} href={href}>
+        <Link key={href} href={href} onClick={onPress}>
           <MyText text={label} fontWeight={'bold'} />
         </Link>
       ))}
@@ -84,14 +117,15 @@ const Links = () => {
   );
 };
 
-const ToggleDarkMode = () => {
+export const ToggleDarkMode = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  console.log('🚀 ~ ToggleDarkMode ~ colorMode:', colorMode);
+
   const bg = useColorModeValue('#181818', 'white');
   const color = useColorModeValue('white', '#181818');
 
   return (
     <Button
+      hideBelow={'md'}
       borderRadius={50}
       width={50}
       height={50}
