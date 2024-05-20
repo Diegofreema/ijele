@@ -52,7 +52,7 @@ export const News = ({}: Props) => {
   );
 };
 
-const NewCards = ({ index }: { index: number }) => {
+export const NewCards = ({ index }: { index: number }) => {
   const color = useColorModeValue('#181818', '#fff');
   const bg = useColorModeValue('#fff', '#181818');
 

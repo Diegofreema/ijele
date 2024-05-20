@@ -9,7 +9,12 @@ export const ImageLinks = ({}: Props) => {
   const index2 = 1,
     index3 = 2;
   return (
-    <Box width={{ base: '90%', md: '70%' }} mx={'auto'} mt={50} pb={50}>
+    <Box
+      width={{ base: '90%', md: '70%' }}
+      mx={'auto'}
+      mt={{ base: 140, md: 50 }}
+      pb={50}
+    >
       <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={5}>
         {fourArray.map((item, i) => (
           <GridItem

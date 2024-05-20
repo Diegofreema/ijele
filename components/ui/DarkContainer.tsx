@@ -24,13 +24,19 @@ interface Props {
         | 'min-content'
       >
     | undefined;
+  hiddenBelow?: 'md';
 }
 
-export const DarkContainer = ({ children, height = '100vh' }: Props) => {
+export const DarkContainer = ({
+  children,
+  height = '100vh',
+  hiddenBelow,
+}: Props) => {
   const bg = useColorModeValue(colors.lightDark, '#fff');
 
   return (
     <Box
+      hideBelow={hiddenBelow}
       minH={height}
       bg={bg}
       py={{ base: '50px', md: '100px' }}

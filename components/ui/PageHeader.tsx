@@ -10,7 +10,7 @@ type Props = {
 export function PageHeader({ title }: Props) {
   const textColor = useColorModeValue('#fff', '#181818');
   return (
-    <DarkContainer height={'100px'}>
+    <DarkContainer height={'100px'} hiddenBelow="md">
       <Text
         position={'absolute'}
         left={'15%'}
