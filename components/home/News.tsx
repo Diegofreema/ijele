@@ -57,50 +57,52 @@ export const NewCards = ({ index }: { index: number }) => {
   const bg = useColorModeValue('#fff', '#181818');
 
   return (
-    <Card
-      as={motion.div}
-      initial={{ y: 50, opacity: 0 }}
-      whileInView={{
-        y: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.5,
-          type: 'spring',
-          damping: '8',
-          ease: 'easeInOut',
-          delay: 0.3 * index,
-        },
-      }}
-      whileHover={{ y: -20 }}
-      viewport={{ once: true }}
-      borderRadius={5}
-      cursor={'pointer'}
-    >
-      <Image
-        src="/news.png"
-        alt="Green double couch with wooden legs"
-        width={'100%'}
-        height={200}
-        objectFit={'cover'}
-      />
-      <CardBody bg={bg}>
-        <Text
-          textColor={colors.textOrange}
-          fontSize={15}
-          fontFamily={'var(--font-rubik)'}
-          fontWeight={'500'}
-        >
-          Interview
-        </Text>
-        <Text
-          textColor={color}
-          fontSize={20}
-          fontFamily={'var(--font-rubik)'}
-          fontWeight={'bold'}
-        >
-          Nwobodo: we are here to compete with the very best
-        </Text>
-      </CardBody>
-    </Card>
+    <Link href={`/news/${index}`}>
+      <Card
+        as={motion.div}
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{
+          y: 0,
+          opacity: 1,
+          transition: {
+            duration: 0.5,
+            type: 'spring',
+            damping: '8',
+            ease: 'easeInOut',
+            delay: 0.3 * index,
+          },
+        }}
+        whileHover={{ y: -20 }}
+        viewport={{ once: true }}
+        borderRadius={5}
+        cursor={'pointer'}
+      >
+        <Image
+          src="/news.png"
+          alt="Green double couch with wooden legs"
+          width={'100%'}
+          height={200}
+          objectFit={'cover'}
+        />
+        <CardBody bg={bg}>
+          <Text
+            textColor={colors.textOrange}
+            fontSize={15}
+            fontFamily={'var(--font-rubik)'}
+            fontWeight={'500'}
+          >
+            Interview
+          </Text>
+          <Text
+            textColor={color}
+            fontSize={20}
+            fontFamily={'var(--font-rubik)'}
+            fontWeight={'bold'}
+          >
+            Nwobodo: we are here to compete with the very best
+          </Text>
+        </CardBody>
+      </Card>
+    </Link>
   );
 };
