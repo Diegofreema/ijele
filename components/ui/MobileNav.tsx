@@ -16,6 +16,8 @@ import {
 import { Links, ToggleDarkMode, links } from './Header';
 import { Link } from 'next-view-transitions';
 import { Moon, Sun } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { colors } from '@/constants';
 
 type Props = {
   isOpen: boolean;
@@ -26,7 +28,7 @@ export function MobileDrawer({ isOpen, onClose }: Props) {
   const color = useColorModeValue('black', '#fff');
   const bg = useColorModeValue('#fff', '#181818');
   const { colorMode, toggleColorMode } = useColorMode();
-
+  const pathname = usePathname();
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
       <DrawerOverlay />
@@ -40,13 +42,19 @@ export function MobileDrawer({ isOpen, onClose }: Props) {
             justifyContent={'center'}
             height={'100%'}
           >
-            {links.map(({ href, label }) => (
-              <Link key={href} href={href} onClick={onClose}>
-                <Text textColor={color} fontWeight={'bold'}>
-                  {label}
-                </Text>
-              </Link>
-            ))}
+            {links.map(({ href, label }) => {
+              const isActive = pathname.includes(href);
+              return (
+                <Link key={href} href={href} onClick={onClose}>
+                  <Text
+                    textColor={isActive ? colors.orange : color}
+                    fontWeight={'bold'}
+                  >
+                    {label}
+                  </Text>
+                </Link>
+              );
+            })}
           </Flex>
         </DrawerBody>
 

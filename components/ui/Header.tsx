@@ -17,6 +17,8 @@ import { Moon, Sun, MenuIcon } from 'lucide-react';
 import { MobileDrawer } from './MobileNav';
 import { MouseEventHandler, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+import { colors } from '@/constants';
 
 interface Props {}
 export const links = [
@@ -102,6 +104,8 @@ export const Links = ({
   flexDirection?: 'row' | 'column' | ResponsiveValue<'row' | 'column'>;
   onClose?: () => void;
 }) => {
+  const pathname = usePathname();
+  const color = useColorModeValue('black', 'white');
   const onPress = (e: any) => {
     e.stopPropagation();
     onClose && onClose();
@@ -109,11 +113,21 @@ export const Links = ({
 
   return (
     <Flex gap={5} hideBelow={'md'} flexDirection={flexDirection}>
-      {links.map(({ href, label }) => (
-        <Link key={href} href={href} onClick={onPress}>
-          <MyText text={label} fontWeight={'bold'} />
-        </Link>
-      ))}
+      {links.map(({ href, label }) => {
+        const isActive = pathname.includes(href);
+        return (
+          <Link key={href} href={href} onClick={onPress} className="group">
+            <Text
+              className="group-hover:text-[#FF2E3B] transition duration-150 group-hover:-translate-y-1"
+              fontFamily={'var(--font-rubik)'}
+              textColor={isActive ? colors.orange : color}
+              fontWeight={'bold'}
+            >
+              {label}
+            </Text>
+          </Link>
+        );
+      })}
     </Flex>
   );
 };

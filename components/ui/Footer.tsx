@@ -25,17 +25,17 @@ const links = [
     label: 'Football',
     subLinks: [
       {
-        label: "Mens's first team",
-        href: '/football/men-teams',
+        label: 'Our team',
+        href: '/football/our-team',
       },
-      {
-        label: "Women's first team",
-        href: '/football/women-teams',
-      },
-      {
-        label: 'Academy',
-        href: '/football/academy',
-      },
+      // {
+      //   label: "Women's first team",
+      //   href: '/football/women-teams',
+      // },
+      // {
+      //   label: 'Academy',
+      //   href: '/football/academy',
+      // },
     ],
   },
   {

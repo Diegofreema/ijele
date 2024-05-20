@@ -38,6 +38,7 @@ export const DarkContainer = ({ children, height = '100vh' }: Props) => {
       flexDir={'column'}
       alignItems={'center'}
       justifyContent={'center'}
+      position={'relative'}
     >
       {children}
     </Box>

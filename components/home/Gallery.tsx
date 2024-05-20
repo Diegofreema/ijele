@@ -1,7 +1,6 @@
 'use client';
 import { colors } from '@/constants';
 import {
-  Box,
   Flex,
   Grid,
   GridItem,
