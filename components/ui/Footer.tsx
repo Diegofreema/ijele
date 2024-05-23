@@ -1,9 +1,19 @@
 'use client';
-import { Box, SimpleGrid, Text, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Icon,
+  IconButton,
+  SimpleGrid,
+  Text,
+  useColorModePreference,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { DarkContainer } from './DarkContainer';
 import { Link } from 'next-view-transitions';
 import { colors } from '@/constants';
 import { motion } from 'framer-motion';
+import { FaInstagram, FaTwitter } from 'react-icons/fa';
 
 interface Props {}
 
@@ -75,7 +85,7 @@ export const Footer = ({}: Props) => {
   return (
     <DarkContainer height={{ base: '100vh', md: '300px' }}>
       <SimpleGrid
-        columns={{ base: 1, md: 5 }}
+        columns={{ base: 2, md: 5 }}
         gap={5}
         width={{ base: '80%', md: '90%' }}
         mx={'auto'}
@@ -118,6 +128,38 @@ export const Footer = ({}: Props) => {
           </Box>
         ))}
       </SimpleGrid>
+      <FooterLinks />
     </DarkContainer>
+  );
+};
+
+const socialLinks = [
+  {
+    href: 'https://www.instagram.com/ijelesportsclub?igsh=aXdoc3Y1bnB3YmJo',
+    icon: FaInstagram,
+  },
+  {
+    href: 'https://twitter.com/ijelesportsclub?s=11',
+    icon: FaTwitter,
+  },
+];
+
+const FooterLinks = () => {
+  const bg = useColorModeValue('white', colors.dark);
+  const color = useColorModeValue(colors.dark, 'white');
+
+  return (
+    <Flex gap={5} justifyContent={'center'} mt={5}>
+      {socialLinks.map(({ href, icon: CustomIcon }) => (
+        <Link href={href} key={href} target="_blank">
+          <IconButton
+            aria-label="icon"
+            bg={bg}
+            color={color}
+            icon={<Icon as={CustomIcon} boxSize={5} />}
+          />
+        </Link>
+      ))}
+    </Flex>
   );
 };

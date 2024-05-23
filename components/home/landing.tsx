@@ -180,12 +180,18 @@ const CaptionText = () => {
         width={{ base: '90%', md: '60%' }}
         fontSize={{ base: 12, md: 15 }}
       >
-        With a commitment to excellence, teamwork and community, we strive to
-        inspire both on and off the pitch, join us on our journey as we chase
-        victory, celebrate resilience, and embody the true essence of the
-        beautiful game.
+        With a commitment to excellence, teamwork, and community, we strive to
+        inspire both on and off the pitch.
       </Text>
-
+      <Text
+        textColor={'#eee'}
+        width={{ base: '90%', md: '60%' }}
+        fontSize={{ base: 12, md: 15 }}
+      >
+        Join the biggest sports club in Nigeria on our journey as we chase
+        victories, celebrate resilience, and embody the true essence of sporting
+        excellence and participation.
+      </Text>
       <Button
         bg={colors.orange}
         color={'white'}

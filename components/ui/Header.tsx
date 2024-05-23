@@ -5,6 +5,7 @@ import {
   Button,
   Flex,
   IconButton,
+  Image,
   ResponsiveValue,
   Text,
   useColorMode,
@@ -81,7 +82,13 @@ export const Header = ({}: Props) => {
         alignItems={'center'}
       >
         <Link href="/">
-          <Avatar src="/logo.png" size={'md'} objectFit={'cover'} />
+          <Image
+            alt="logo"
+            src="/logo.png"
+            width={50}
+            height={50}
+            objectFit={'contain'}
+          />
         </Link>
         <Links />
         <ToggleDarkMode />
