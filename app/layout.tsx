@@ -23,7 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(inter.className, fonts.rubik.variable, 'min-h-screen')}
+        className={cn(
+          inter.className,
+          fonts.rubik.variable,
+          fonts.belleza.variable,
+          'min-h-screen'
+        )}
       >
         <Providers>
           <AppWrapper>

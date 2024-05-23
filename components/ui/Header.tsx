@@ -33,7 +33,7 @@ export const links = [
   },
   {
     href: '/ticket',
-    label: 'Ticket',
+    label: 'Event',
   },
   {
     href: '/teams',
