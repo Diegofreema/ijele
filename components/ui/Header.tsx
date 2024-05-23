@@ -48,6 +48,10 @@ export const links = [
     label: 'Shop',
   },
   {
+    href: '/gallery',
+    label: 'Gallery',
+  },
+  {
     href: '/tv',
     label: 'Ijele Tv',
   },

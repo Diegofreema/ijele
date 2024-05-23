@@ -23,21 +23,30 @@ import { Check } from 'lucide-react';
 
 const packages = [
   {
-    packageName: 'Life Membership',
-    price: 'N250,000',
+    packageName: 'Regular Membership',
+    price: 'Free',
     benefits: [
-      'Lifetime access to club events and facilities',
-      'Special recognition in club publications',
+      'Access to limited discounts and member benefits',
+      'Priority booking for events and programs',
     ],
   },
   {
-    packageName: 'Yearly Membership',
-    price: 'N170,000',
+    packageName: 'Annual Membership',
+    price: 'N25,000',
     benefits: [
       'Annual access to club events and facilities',
       'Priority booking for events and programs',
     ],
   },
+  {
+    packageName: 'Life Membership',
+    price: 'N175,000',
+    benefits: [
+      'Lifetime access to club events and facilities',
+      'Special recognition in club publications',
+    ],
+  },
+
   {
     packageName: 'Honorary Board Membership',
     price: 'N3 million (valid for 3 years)',
@@ -56,14 +65,14 @@ const packages = [
       'Comprehensive VIP benefits and high-profile recognition',
     ],
   },
-  {
-    packageName: 'Life Membership',
-    price: 'N250,000',
-    benefits: [
-      'Lifetime access to club events and facilities',
-      'Special recognition in club publications',
-    ],
-  },
+  // {
+  //   packageName: 'Life Membership',
+  //   price: 'N250,000',
+  //   benefits: [
+  //     'Lifetime access to club events and facilities',
+  //     'Special recognition in club publications',
+  //   ],
+  // },
 ];
 
 export const Member = (): JSX.Element => {
