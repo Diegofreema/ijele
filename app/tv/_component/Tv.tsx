@@ -111,7 +111,7 @@ export const Tv = ({}: Props) => {
   );
 };
 
-const CustomTitle = ({ title }: { title: string }) => {
+export const CustomTitle = ({ title }: { title: string }) => {
   const bg = useColorModeValue(colors.dark, 'white');
   return (
     <Heading

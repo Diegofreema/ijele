@@ -1,6 +1,5 @@
 'use client';
 import {
-  Avatar,
   Box,
   Button,
   Flex,
@@ -13,10 +12,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { Link } from 'next-view-transitions';
-import { MyText } from './MyText';
 import { Moon, Sun, MenuIcon } from 'lucide-react';
 import { MobileDrawer } from './MobileNav';
-import { MouseEventHandler, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { colors } from '@/constants';
