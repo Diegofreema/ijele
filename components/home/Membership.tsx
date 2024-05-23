@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { DarkContainer } from '../ui/DarkContainer';
 import { motion } from 'framer-motion';
+import { Link } from 'next-view-transitions';
 
 interface Props {}
 
@@ -55,18 +56,20 @@ const Left = () => {
         victory, celebrate resilience, and embody the true essence of the
         beautiful game.
       </Text>
-      <Button
-        _hover={{
-          bg: colors.textOrange,
-          transition: 'all 0.3s ease',
-        }}
-        color="white"
-        bg={colors.orange}
-        width={'fit-content'}
-        borderRadius={20}
-      >
-        Become a member
-      </Button>
+      <Link href="/membership">
+        <Button
+          _hover={{
+            bg: colors.textOrange,
+            transition: 'all 0.3s ease',
+          }}
+          color="white"
+          bg={colors.orange}
+          width={'fit-content'}
+          borderRadius={20}
+        >
+          Become a member
+        </Button>
+      </Link>
     </Box>
   );
 };
@@ -86,7 +89,7 @@ const Right = () => {
     >
       <Image
         alt="image"
-        src="/member.png"
+        src="/ijele.jpeg"
         width={'100%'}
         height={'100%'}
         objectFit={'cover'}

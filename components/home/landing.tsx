@@ -26,6 +26,7 @@ import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
+import { Link } from 'next-view-transitions';
 
 interface Props {}
 const images = ['slide.jpeg', 'slide1.jpeg', 'slide2.jpeg'];
@@ -192,15 +193,17 @@ const CaptionText = () => {
         victories, celebrate resilience, and embody the true essence of sporting
         excellence and participation.
       </Text>
-      <Button
-        bg={colors.orange}
-        color={'white'}
-        width={'fit-content'}
-        px={10}
-        borderRadius={50}
-      >
-        Join
-      </Button>
+      <Link href="/membership">
+        <Button
+          bg={colors.orange}
+          color={'white'}
+          width={'fit-content'}
+          px={10}
+          borderRadius={50}
+        >
+          Join
+        </Button>
+      </Link>
     </Flex>
   );
 };

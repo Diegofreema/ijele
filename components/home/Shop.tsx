@@ -11,6 +11,7 @@ import {
 import { DarkContainer } from '../ui/DarkContainer';
 import { colors } from '@/constants';
 import { motion, createMotionComponent } from 'framer-motion';
+import { Link } from 'next-view-transitions';
 
 interface Props {}
 
@@ -38,7 +39,7 @@ export const Shop = ({}: Props) => {
         >
           <Image
             alt="image"
-            src="/people.png"
+            src="/frame.jpg"
             width={'100%'}
             height={'auto'}
             objectFit={'cover'}
@@ -74,19 +75,21 @@ export const Shop = ({}: Props) => {
             Nothing but the best merchandise from your favorite football club
           </Text>
 
-          <Button
-            bg={colors.orange}
-            color={'white'}
-            width={'fit-content'}
-            px={10}
-            borderRadius={50}
-            _hover={{
-              bg: colors.textOrange,
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Shop now
-          </Button>
+          <Link href="/shop">
+            <Button
+              bg={colors.orange}
+              color={'white'}
+              width={'fit-content'}
+              px={10}
+              borderRadius={50}
+              _hover={{
+                bg: colors.textOrange,
+                transition: 'all 0.3s ease',
+              }}
+            >
+              Shop now
+            </Button>
+          </Link>
         </Flex>
       </Box>
     </DarkContainer>
