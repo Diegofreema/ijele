@@ -29,8 +29,8 @@ export const links = [
     label: 'About us',
   },
   {
-    href: '/ticket',
-    label: 'Event',
+    href: '/events',
+    label: 'Events',
   },
   {
     href: '/teams',
