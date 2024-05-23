@@ -30,7 +30,7 @@ const Left = () => {
       viewport={{ once: true }}
     >
       <Heading
-        size={{ base: 'md', md: 'lg' }}
+        size={{ base: 'xl', md: '2xl' }}
         mt={{ base: 10, md: 0 }}
         className="pl-6"
         mb={5}
