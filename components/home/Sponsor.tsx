@@ -18,6 +18,10 @@ const partners = [
     link: 'www.afriskaut.com',
     img: '/afri.PNG',
   },
+  {
+    link: 'https://www.africasport.net/',
+    img: '/sport.jpeg',
+  },
 ];
 
 export const Sponsor = ({}: Props) => {

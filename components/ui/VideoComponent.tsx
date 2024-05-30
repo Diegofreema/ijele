@@ -1,11 +1,13 @@
 'use client';
 import { colors } from '@/constants';
+import { VideoType } from '@/types';
 import { Box, Button, ResponsiveValue, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { Pause, Play } from 'lucide-react';
 import React, { LegacyRef, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 type Props = {
+  video: VideoType;
   height:
     | ResponsiveValue<
         | number
@@ -29,7 +31,7 @@ type Props = {
   fontSize?: number;
 };
 
-export function VideoComponent({ height, fontSize }: Props) {
+export function VideoComponent({ height, fontSize, video }: Props) {
   const [playing, setPlaying] = useState(false);
   const size = height === 250 ? 45 : 50;
   const iconSize = height === 250 ? 20 : 25;
@@ -54,7 +56,7 @@ export function VideoComponent({ height, fontSize }: Props) {
     >
       <ReactPlayer
         playing={playing}
-        url="https://youtu.be/ZZgP1dPELrA"
+        url={video?.video_url}
         controls
         width={'100%'}
         height={'100%'}
@@ -81,7 +83,7 @@ export function VideoComponent({ height, fontSize }: Props) {
           mt={5}
           maxWidth={'80%'}
         >
-          Nwobodo: we are here to compete with the very best
+          {video?.caption}
         </Text>
       </Box>
       <Box className="absolute inset-0 bg-black/40" />

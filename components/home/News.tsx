@@ -6,6 +6,7 @@ import {
   Flex,
   Image,
   SimpleGrid,
+  Spinner,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -14,12 +15,17 @@ import { MyText } from '../ui/MyText';
 import { colors } from '@/constants';
 import { Link } from 'next-view-transitions';
 import { motion } from 'framer-motion';
+import { NewsType } from '@/types';
+import { useMemo } from 'react';
 
-interface Props {}
+interface Props {
+  news: NewsType[];
+}
 const fourArray = [1, 2, 3, 4];
-export const News = ({}: Props) => {
+export const News = ({ news }: Props) => {
   const bg = useColorModeValue('#091223', '#fff');
   const color = useColorModeValue('#fff', '#091223');
+  const fourNewsItems = useMemo(() => [...news.slice(0, 4)], [news]);
 
   return (
     <Box bg={bg} mt={{ base: '20px', md: '50px' }} py={50} minHeight={'400px'}>
@@ -32,32 +38,52 @@ export const News = ({}: Props) => {
           >
             Latest News
           </Text>
-          <Link href="/news">
-            <Text
-              textColor={colors.textOrange}
-              fontSize={{ base: 15, md: 20 }}
-              fontFamily={'var(--font-rubik)'}
-            >
-              All News
-            </Text>
-          </Link>
+          {news?.length > 4 && (
+            <Link href="/news">
+              <Text
+                textColor={colors.textOrange}
+                fontSize={{ base: 15, md: 20 }}
+                fontFamily={'var(--font-rubik)'}
+              >
+                All News
+              </Text>
+            </Link>
+          )}
         </Flex>
         <SimpleGrid columns={{ base: 1, md: 4 }} gap={30}>
-          {fourArray.map((item, i) => (
-            <NewCards index={i} key={item} />
-          ))}
+          {fourNewsItems?.length > 0 &&
+            fourNewsItems.map((item, i) => (
+              <NewCards index={i} key={i} item={item} />
+            ))}
         </SimpleGrid>
+        {news?.length === 0 && (
+          <Box
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={'center'}
+            height={'100%'}
+            width={'100%'}
+          >
+            <MyText text="No News yet" textAlign={'center'} />
+          </Box>
+        )}
       </Box>
     </Box>
   );
 };
 
-export const NewCards = ({ index }: { index: number }) => {
+export const NewCards = ({
+  index,
+  item,
+}: {
+  index: number;
+  item: NewsType;
+}) => {
   const color = useColorModeValue('#181818', '#fff');
   const bg = useColorModeValue('#fff', '#181818');
 
   return (
-    <Link href={`/news/${index}`}>
+    <Link href={`/news/${item?.id}`}>
       <Card
         as={motion.div}
         initial={{ y: 50, opacity: 0 }}
@@ -78,7 +104,7 @@ export const NewCards = ({ index }: { index: number }) => {
         cursor={'pointer'}
       >
         <Image
-          src="/news.png"
+          src={item?.image_url as string}
           alt="Green double couch with wooden legs"
           width={'100%'}
           height={200}
@@ -91,7 +117,7 @@ export const NewCards = ({ index }: { index: number }) => {
             fontFamily={'var(--font-rubik)'}
             fontWeight={'500'}
           >
-            Interview
+            {item?.author_name}
           </Text>
           <Text
             textColor={color}
@@ -99,7 +125,7 @@ export const NewCards = ({ index }: { index: number }) => {
             fontFamily={'var(--font-rubik)'}
             fontWeight={'bold'}
           >
-            Nwobodo: we are here to compete with the very best
+            {item?.title}
           </Text>
         </CardBody>
       </Card>

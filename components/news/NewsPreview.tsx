@@ -3,10 +3,13 @@ import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { NewCards } from '../home/News';
 import { OrangeButton } from '../ui/OrangeButton';
+import { NewsType } from '@/types';
 
-interface Props {}
+interface Props {
+  news: NewsType[];
+}
 const fourArray = [1, 2, 3, 4, 5, , 6, 7];
-export const NewsPreview = ({}: Props) => {
+export const NewsPreview = ({ news }: Props) => {
   const index2 = 1,
     index3 = 2;
   return (
