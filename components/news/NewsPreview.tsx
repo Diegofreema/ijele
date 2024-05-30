@@ -4,14 +4,23 @@ import { motion } from 'framer-motion';
 import { NewCards } from '../home/News';
 import { OrangeButton } from '../ui/OrangeButton';
 import { NewsType } from '@/types';
+import { useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Link } from 'next-view-transitions';
 
 interface Props {
   news: NewsType[];
+  count: number;
 }
-const fourArray = [1, 2, 3, 4, 5, , 6, 7];
-export const NewsPreview = ({ news }: Props) => {
+
+export const NewsPreview = ({ news, count }: Props) => {
   const index2 = 1,
     index3 = 2;
+
+  const memoNews = useMemo(() => [...news], [news]);
+  const searchParams = useSearchParams();
+  const currentPage = Number(searchParams.get('page')) || 1;
+  const newsHasNextPage = count > 10 * currentPage;
   return (
     <Box
       width={{ base: '90%', md: '70%' }}
@@ -20,10 +29,10 @@ export const NewsPreview = ({ news }: Props) => {
       pb={50}
     >
       <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={5} mb={10}>
-        {fourArray.slice(0, 2).map((item, i) => (
+        {memoNews?.slice(0, 2).map((item, i) => (
           <GridItem
             cursor={'pointer'}
-            key={item}
+            key={i}
             colSpan={1}
             position={'relative'}
             as={motion.div}
@@ -40,7 +49,7 @@ export const NewsPreview = ({ news }: Props) => {
             }}
             viewport={{ once: true }}
           >
-            <NewCards index={i} />
+            <NewCards index={i} item={item} />
           </GridItem>
         ))}
       </Grid>
@@ -49,10 +58,10 @@ export const NewsPreview = ({ news }: Props) => {
         gap={5}
         mb={10}
       >
-        {fourArray.slice(2, 6).map((item, i) => (
+        {memoNews.slice(2, 6).map((item, i) => (
           <GridItem
             cursor={'pointer'}
-            key={item}
+            key={i}
             colSpan={1}
             position={'relative'}
             as={motion.div}
@@ -69,13 +78,17 @@ export const NewsPreview = ({ news }: Props) => {
             }}
             viewport={{ once: true }}
           >
-            <NewCards index={i} />
+            <NewCards index={i} item={item} />
           </GridItem>
         ))}
       </Grid>
-      <Flex justifyContent={'center'}>
-        <OrangeButton text="Load more" />
-      </Flex>
+      {newsHasNextPage && (
+        <Flex justifyContent={'center'} mt={5}>
+          <Link href={`/site/news?page=${currentPage + 1}`} passHref>
+            <OrangeButton text="Load more" />
+          </Link>
+        </Flex>
+      )}
     </Box>
   );
 };

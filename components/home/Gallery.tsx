@@ -90,7 +90,12 @@ export const Gallery = ({ images }: Props) => {
         </Grid>
       )}
       {memoImages?.length === 0 && (
-        <MyText text="No images yet" textAlign={'center'} />
+        <MyText
+          text="No images yet"
+          textAlign={'center'}
+          fontWeight={'bold'}
+          fontSize={{ base: 15, md: 20 }}
+        />
       )}
     </LightContainer>
   );

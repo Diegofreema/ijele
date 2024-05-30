@@ -1,4 +1,4 @@
-import { getNews } from '@/actions/data.action';
+import { getNews, getTotalNews } from '@/actions/data.action';
 import { NewsPreview } from '@/components/news/NewsPreview';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Wrapper } from '@/components/ui/wrapper';
@@ -8,11 +8,14 @@ interface Props {}
 
 const page = async ({ searchParams }: { searchParams: { page?: string } }) => {
   const currentPage = Number(searchParams?.page) || 1;
-  const news = await getNews(currentPage);
+  const newsData = getNews(currentPage);
+  const countData = getTotalNews();
+
+  const [news, count] = await Promise.all([newsData, countData]);
   return (
     <Wrapper>
       <PageHeader title="Latest News" />
-      <NewsPreview news={news} />
+      <NewsPreview news={news} count={count.numberOfArticles} />
     </Wrapper>
   );
 };

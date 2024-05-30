@@ -33,8 +33,6 @@ export const LightContainer = ({ children, height = '100vh' }: Props) => {
       py={{ base: '50px', md: '100px' }}
       display={'flex'}
       flexDir={'column'}
-      alignItems={'center'}
-      justifyContent={'center'}
     >
       {children}
     </Box>

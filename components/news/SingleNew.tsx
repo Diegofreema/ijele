@@ -6,6 +6,7 @@ import {
   Flex,
   Image,
   SimpleGrid,
+  Spinner,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -14,28 +15,34 @@ import { DarkContainer } from '../ui/DarkContainer';
 import { NewCards } from '../home/News';
 import { Link } from 'next-view-transitions';
 import { colors } from '@/constants';
+import { NewsType } from '@/types';
+import { useEffect, useMemo, useState } from 'react';
+import { format } from 'date-fns';
+import { getNews, getRelatedNews } from '@/actions/data.action';
+interface Props {
+  singleArticle: NewsType;
+}
 
-interface Props {}
-
-export const SingleNew = ({}: Props) => {
+export const SingleNew = ({ singleArticle }: Props) => {
+  const memoData = useMemo(() => singleArticle, [singleArticle]);
   return (
     <Box pb={50}>
       <Box mb={{ base: 50, md: 100 }} mt={{ base: 120, md: 0 }}>
         <Image
           alt="team"
-          src="/wide.png"
+          src="/i.jpeg"
           width="100%"
-          height={{ base: '200px', md: 'auto' }}
+          height={{ base: '200px', md: 400 }}
           objectFit={'cover'}
         />
       </Box>
-      <NewsDetails />
-      <RelatedNews />
+      <NewsDetails data={memoData} />
+      <RelatedNews data={memoData} />
     </Box>
   );
 };
 
-const NewsDetails = () => {
+const NewsDetails = ({ data }: { data: NewsType }) => {
   return (
     <Center
       flexDir={'column'}
@@ -50,53 +57,25 @@ const NewsDetails = () => {
       >
         <Flex gap={{ base: 2, md: 5 }} alignItems={'center'}>
           <Avatar
-            name="Segun Adebayo"
+            name="admin"
             src="/logo.png"
             size={{ base: 'sm', md: 'md' }}
           />
           <MyText
-            text="Vicent Company"
+            text={data?.author_name as string}
             fontWeight={'400'}
             fontSize={{ base: 12, md: 15 }}
           />
         </Flex>
         <MyText
-          text="May 15, 2022"
+          text={format(data?.created_at, 'eee MMM Y')}
           fontWeight={'bold'}
           fontSize={{ base: 12, md: 15 }}
         />
       </Flex>
       <SimpleGrid mt={10} gap={5}>
         <MyText
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-        sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum."
-          fontSize={14}
-          fontFamily={'var(--font-rubik)'}
-        />
-        <MyText
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-        sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum."
-          fontSize={14}
-          fontFamily={'var(--font-rubik)'}
-        />
-        <MyText
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-        sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum."
+          text={data?.news as string}
           fontSize={14}
           fontFamily={'var(--font-rubik)'}
         />
@@ -105,37 +84,60 @@ const NewsDetails = () => {
   );
 };
 
-const array = [1, 2, 3, 4];
+const RelatedNews = ({ data }: { data: NewsType }) => {
+  const [relatedNews, setRelatedNews] = useState<NewsType[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const getRelatedNew = async () => {
+      try {
+        const news = await getRelatedNews(
+          data?.category as string,
+          data?.id as number
+        );
 
-const RelatedNews = () => {
+        setRelatedNews(news);
+      } catch (error) {
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getRelatedNew();
+  }, [data?.category, data?.id]);
   const color = useColorModeValue('#fff', '#091223');
   return (
     <DarkContainer height={'auto'}>
-      <Box width={{ base: '90%', md: '70%' }} mx={'auto'}>
-        <Flex my={10} justifyContent={'space-between'} alignItems={'center'}>
-          <Text
-            textColor={color}
-            fontSize={{ base: 15, md: 20 }}
-            fontFamily={'var(--font-rubik)'}
-          >
-            Related News
-          </Text>
-          <Link href="/news">
+      {relatedNews?.length > 0 && (
+        <Box width={{ base: '90%', md: '70%' }} mx={'auto'}>
+          <Flex my={10} justifyContent={'space-between'} alignItems={'center'}>
             <Text
-              textColor={colors.textOrange}
+              textColor={color}
               fontSize={{ base: 15, md: 20 }}
               fontFamily={'var(--font-rubik)'}
             >
-              All News
+              Related News
             </Text>
-          </Link>
-        </Flex>
-        <SimpleGrid columns={{ base: 1, md: 4 }} gap={5}>
-          {array.map((_, index) => (
-            <NewCards index={index} key={index} />
-          ))}
-        </SimpleGrid>
-      </Box>
+            <Link href="/news">
+              <Text
+                textColor={colors.textOrange}
+                fontSize={{ base: 15, md: 20 }}
+                fontFamily={'var(--font-rubik)'}
+              >
+                All News
+              </Text>
+            </Link>
+          </Flex>
+          {loading ? (
+            <Spinner size="xl" />
+          ) : (
+            <SimpleGrid columns={{ base: 1, md: 4 }} gap={5}>
+              {relatedNews?.map((item, index) => (
+                <NewCards item={item} index={index} key={index} />
+              ))}
+            </SimpleGrid>
+          )}
+        </Box>
+      )}
     </DarkContainer>
   );
 };

@@ -15,99 +15,148 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { VideoType } from '@/types';
+import { useMemo } from 'react';
+import { MyText } from '@/components/ui/MyText';
 
-interface Props {}
+interface Props {
+  count: number;
+  videos: VideoType[];
+}
 const array = [1, 1, 1, 1];
-export const Tv = ({}: Props) => {
+export const Tv = ({ count, videos }: Props) => {
+  const memoVideos = useMemo(() => [...videos], [videos]);
+  const firstVideo = memoVideos?.[0];
+  const firstTeam = useMemo(
+    () => videos?.filter((item) => item.type === 'first team'),
+    [videos]
+  );
+  const academyVideo = useMemo(
+    () => videos?.filter((item) => item.type === 'academy'),
+    [videos]
+  );
+  const pressConference = useMemo(
+    () => videos?.filter((item) => item.type === 'press conference'),
+    [videos]
+  );
   return (
-    <Box
-      width={{ base: '90%', md: '70%' }}
-      mx={'auto'}
-      display={'flex'}
-      flexDir={'column'}
-      gap={10}
-    >
-      <SimpleGrid>
-        <CustomTitle title="Latest Videos" />
-        <VideoComponent height={{ base: '250px', md: '400px' }} fontSize={15} />
-      </SimpleGrid>
-      <SimpleGrid>
-        <CustomTitle title="First Team" />
-        <SimpleGrid>
-          <Carousel
-            opts={{
-              align: 'start',
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="w-full">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem
-                  key={index}
-                  className="sm:basis-1md:basis-1/2 lg:basis-1/3"
-                >
-                  <VideoComponent
-                    height={{ base: '250px', md: '400px' }}
-                    fontSize={15}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+    <>
+      <Box
+        width={{ base: '90%', md: '70%' }}
+        mx={'auto'}
+        display={'flex'}
+        flexDir={'column'}
+        gap={10}
+      >
+        <SimpleGrid width={'100%'}>
+          <CustomTitle title="Latest Videos" />
+          {firstVideo && (
+            <VideoComponent
+              video={firstVideo}
+              height={{ base: '250px', md: '400px' }}
+              fontSize={15}
+            />
+          )}
         </SimpleGrid>
-      </SimpleGrid>
-      <SimpleGrid>
-        <CustomTitle title="Press Conference" />
-        <Carousel
-          opts={{
-            align: 'start',
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="w-full">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem
-                key={index}
-                className="sm:basis-1md:basis-1/2 lg:basis-1/3"
+
+        {firstTeam?.length > 0 && (
+          <SimpleGrid>
+            <CustomTitle title="First Team" />
+            <SimpleGrid>
+              <Carousel
+                opts={{
+                  align: 'start',
+                  loop: true,
+                }}
+                className="w-full"
               >
-                <VideoComponent
-                  height={{ base: '250px', md: '400px' }}
-                  fontSize={15}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-      </SimpleGrid>
-      <SimpleGrid>
-        <CustomTitle title="Academy" />
-        <SimpleGrid>
-          <Carousel
-            opts={{
-              align: 'start',
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="w-full">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem
-                  key={index}
-                  className="sm:basis-1md:basis-1/2 lg:basis-1/3"
-                >
-                  <VideoComponent
-                    height={{ base: '250px', md: '400px' }}
-                    fontSize={15}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </SimpleGrid>
-      </SimpleGrid>
-    </Box>
+                <CarouselContent className="w-full">
+                  {firstTeam?.map((item, index) => (
+                    <CarouselItem
+                      key={index}
+                      className="sm:basis-1md:basis-1/2 lg:basis-1/3"
+                    >
+                      <VideoComponent
+                        video={item}
+                        height={{ base: '250px', md: '400px' }}
+                        fontSize={15}
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </SimpleGrid>
+          </SimpleGrid>
+        )}
+        {pressConference?.length > 0 && (
+          <SimpleGrid>
+            <CustomTitle title="Press Conference" />
+            <Carousel
+              opts={{
+                align: 'start',
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="w-full">
+                {pressConference?.map((item, index) => (
+                  <CarouselItem
+                    key={index}
+                    className="sm:basis-1md:basis-1/2 lg:basis-1/3"
+                  >
+                    <VideoComponent
+                      video={item}
+                      height={{ base: '250px', md: '400px' }}
+                      fontSize={15}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </SimpleGrid>
+        )}
+        {academyVideo?.length > 0 && (
+          <SimpleGrid>
+            <CustomTitle title="Academy" />
+            <SimpleGrid>
+              <Carousel
+                opts={{
+                  align: 'start',
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="w-full">
+                  {academyVideo?.map((item, index) => (
+                    <CarouselItem
+                      key={index}
+                      className="sm:basis-1md:basis-1/2 lg:basis-1/3"
+                    >
+                      <VideoComponent
+                        video={item}
+                        height={{ base: '250px', md: '400px' }}
+                        fontSize={15}
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </SimpleGrid>
+          </SimpleGrid>
+        )}
+      </Box>
+      <Flex justifyContent={'center'} width={'100%'}>
+        {videos?.length === 0 && (
+          <MyText
+            text="No videos yet"
+            fontSize={{ base: 15, md: 20 }}
+            fontWeight={'bold'}
+            width={'100%'}
+            textAlign={'center'}
+          />
+        )}
+      </Flex>
+    </>
   );
 };
 
