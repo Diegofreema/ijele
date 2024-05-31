@@ -5,6 +5,7 @@ import {
   Box,
   Flex,
   Heading,
+  HeadingProps,
   SimpleGrid,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -160,10 +161,14 @@ export const Tv = ({ count, videos }: Props) => {
   );
 };
 
-export const CustomTitle = ({ title }: { title: string }) => {
+export const CustomTitle = ({
+  title,
+  ...props
+}: { title: string } & HeadingProps) => {
   const bg = useColorModeValue(colors.dark, 'white');
   return (
     <Heading
+      {...props}
       textColor={bg}
       size={{ base: 'lg', md: 'xl' }}
       mb={{ base: 5, md: 10 }}

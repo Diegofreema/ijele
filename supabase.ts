@@ -166,6 +166,7 @@ export type Database = {
           middle_name: string | null
           nationality: string
           position: Database["public"]["Enums"]["ROLE"]
+          role: Database["public"]["Enums"]["DUTY"] | null
           second_position: string | null
           skills_description: string | null
           state_of_orgin: string
@@ -194,6 +195,7 @@ export type Database = {
           middle_name?: string | null
           nationality?: string
           position: Database["public"]["Enums"]["ROLE"]
+          role?: Database["public"]["Enums"]["DUTY"] | null
           second_position?: string | null
           skills_description?: string | null
           state_of_orgin?: string
@@ -222,6 +224,7 @@ export type Database = {
           middle_name?: string | null
           nationality?: string
           position?: Database["public"]["Enums"]["ROLE"]
+          role?: Database["public"]["Enums"]["DUTY"] | null
           second_position?: string | null
           skills_description?: string | null
           state_of_orgin?: string
@@ -370,6 +373,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      DUTY:
+        | "captain"
+        | "assistant captain"
+        | "head coach"
+        | "assistant coach"
+        | "technical coach"
+        | "goalkeeper coach"
+        | "set piece coach"
       RESULT:
         | "win"
         | "loss"
@@ -378,7 +389,7 @@ export type Database = {
         | "upcoming"
         | "live"
         | "postponed"
-      ROLE: "forward" | "midfielder" | "defender" | "goalkeeper"
+      ROLE: "forward" | "midfielder" | "defender" | "goalkeeper" | "coach"
       VIDEO_TYPE: "first team" | "academy" | "press conference"
     }
     CompositeTypes: {

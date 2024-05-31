@@ -5,23 +5,26 @@ import { Link } from 'next-view-transitions';
 
 interface Props {}
 
-const fourArray = ['/men.png', '/w.png', '/ac.png', '/basket.png'];
 const images = [
   {
-    img: '/men.png',
+    img: '/frame-man.jpg',
     href: '/teams/first-team/men',
+    text: "Men's First Team",
   },
   {
     img: '/w.png',
     href: '#',
+    // text: 'Women\'s First Team'
   },
   {
     img: '/ac.png',
     href: '#',
+    // text: 'Academy'
   },
   {
     img: '/basket.png',
     href: '#',
+    // text: 'Basketball Team'
   },
 ];
 export const ImageLinks = ({}: Props) => {
@@ -65,6 +68,16 @@ export const ImageLinks = ({}: Props) => {
                 borderRadius={10}
               />
             </Link>
+            <Box position={'absolute'} left={5} bottom={5}>
+              <Text
+                textColor={'white'}
+                fontSize={{ base: 15, md: 20 }}
+                fontWeight={'bold'}
+                fontFamily={'var(--font-rubik)'}
+              >
+                {item?.text}
+              </Text>
+            </Box>
             <Box
               display={'flex'}
               justifyContent={'center'}
@@ -76,7 +89,7 @@ export const ImageLinks = ({}: Props) => {
               bottom={0}
               bg="black"
               opacity={0.7}
-              zIndex={i == 0 ? -2 : 55}
+              zIndex={55}
             >
               <Text
                 textColor={'white'}

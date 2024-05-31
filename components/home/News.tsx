@@ -107,8 +107,8 @@ export const NewCards = ({
           src={item?.image_url as string}
           alt="Green double couch with wooden legs"
           width={'100%'}
-          height={200}
-          objectFit={'cover'}
+          height={250}
+          objectFit={'fill'}
         />
         <CardBody bg={bg}>
           <Text
