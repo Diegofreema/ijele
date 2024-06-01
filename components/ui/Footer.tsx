@@ -13,7 +13,7 @@ import { DarkContainer } from './DarkContainer';
 import { Link } from 'next-view-transitions';
 import { colors } from '@/constants';
 import { motion } from 'framer-motion';
-import { FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 interface Props {}
 
@@ -141,6 +141,10 @@ const socialLinks = [
   {
     href: 'https://twitter.com/ijelesportsclub?s=11',
     icon: FaTwitter,
+  },
+  {
+    href: 'https://www.facebook.com/profile.php?id=61560226838987',
+    icon: FaFacebook,
   },
 ];
 
