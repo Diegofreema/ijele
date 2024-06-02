@@ -32,7 +32,7 @@ export const DarkContainer = ({
   height = '100vh',
   hiddenBelow,
 }: Props) => {
-  const bg = useColorModeValue(colors.lightDark, '#fff');
+  const bg = useColorModeValue(colors.brown, colors.lightDark);
 
   return (
     <Box

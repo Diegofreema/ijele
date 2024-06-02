@@ -23,7 +23,7 @@ type Props = {
 export const Shop = ({ count, products }: Props): JSX.Element => {
   return (
     <>
-      <Flex>
+      <Flex justifyContent="center">
         {products?.length === 0 && (
           <CustomTitle title="No data yet" textAlign="center" />
         )}

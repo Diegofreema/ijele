@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const Gallery = ({ images }: Props) => {
-  const color = useColorModeValue('#181818', 'white');
+  const color = useColorModeValue('', 'white');
   const bg = useColorModeValue('#fff', '#181818');
   const memoImages = useMemo(() => [...images], [images]);
   return (
@@ -34,7 +34,7 @@ export const Gallery = ({ images }: Props) => {
         mx={'auto'}
       >
         <Text
-          textColor={color}
+          textColor={'white'}
           fontSize={{ base: 15, md: 20 }}
           fontWeight={'bold'}
           fontFamily={'var(--font-rubik)'}

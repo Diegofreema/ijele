@@ -166,7 +166,7 @@ const PremiumCard = ({
   packageName: string;
   price: string;
 }) => {
-  const bg = useColorModeValue('white', colors.dark);
+  const bg = useColorModeValue(colors.darkBlue, colors.dark);
   const color = useColorModeValue(colors.dark, 'white');
   return (
     <Card
@@ -194,10 +194,10 @@ const PremiumCard = ({
           height={50}
           objectFit={'contain'}
         />
-        <Heading textColor={color} size={{ base: 'base', md: '"md"' }}>
+        <Heading textColor={'white'} size={{ base: 'base', md: '"md"' }}>
           {packageName}
         </Heading>
-        <Text textColor={color} fontFamily={'var(--font-belleza)'}>
+        <Text textColor={'white'} fontFamily={'var(--font-belleza)'}>
           {price}
         </Text>
       </CardBody>
@@ -224,9 +224,9 @@ const Benefits = ({ benefits }: { benefits: string[] }) => {
     >
       {benefits.map((text, i) => (
         <Flex key={i} gap={3} alignItems={'center'}>
-          <Check color={colors.orange} size={20} />
+          <Check color={colors.darkBlue} size={20} />
           <Text
-            textColor={color}
+            textColor={'white'}
             fontWeight={'500'}
             fontFamily={'var(--font-rubik)'}
           >
@@ -237,10 +237,10 @@ const Benefits = ({ benefits }: { benefits: string[] }) => {
 
       <Button
         _hover={{
-          bg: colors.textOrange,
+          bg: colors.lightBlue,
           transition: { duration: 0.3, ease: 'easeIn' },
         }}
-        bg={colors.orange}
+        bg={colors.darkBlue}
         color={'white'}
       >
         Join

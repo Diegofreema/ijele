@@ -1,4 +1,5 @@
 'use client';
+import { CustomTitle } from '@/app/tv/_component/Tv';
 import { MyText } from '@/components/ui/MyText';
 import { OrangeButton } from '@/components/ui/OrangeButton';
 import { ImageType } from '@/types';
@@ -16,7 +17,7 @@ export const ImageGrid = ({ count, images }: Props) => {
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;
   const imageHasNextPage = count > 10 * currentPage;
-  const memoImages = useMemo(() => [...images], [images]);
+  const memoImages = useMemo(() => images, [images]);
   return (
     <>
       {memoImages?.length > 0 && (
@@ -50,7 +51,7 @@ export const ImageGrid = ({ count, images }: Props) => {
           )}
         </Box>
       )}
-      {memoImages?.length === 0 && (
+      {images?.length === 0 && (
         <Flex
           width={{ base: '90%', md: '70%' }}
           mx={'auto'}
@@ -58,8 +59,8 @@ export const ImageGrid = ({ count, images }: Props) => {
           alignItems={'center'}
           height={'100%'}
         >
-          <MyText
-            text={'No images yet'}
+          <CustomTitle
+            title={'No images yet'}
             fontSize={{ base: 15, md: 20 }}
             fontWeight={'bold'}
             textAlign={'center'}

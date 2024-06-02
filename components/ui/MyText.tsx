@@ -8,7 +8,7 @@ type Props = TextProps & {
 export const MyText = ({ text, ...props }: Props) => {
   const color = useColorModeValue('#181818', 'white');
   return (
-    <Text {...props} textColor={color} fontFamily={'var(--font-rubik)'}>
+    <Text {...props} textColor={'white'} fontFamily={'var(--font-rubik)'}>
       {text}
     </Text>
   );

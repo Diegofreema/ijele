@@ -1,4 +1,5 @@
 'use client';
+import { colors } from '@/constants';
 import { Box, ResponsiveValue, useColorModeValue } from '@chakra-ui/react';
 
 interface Props {
@@ -25,7 +26,7 @@ interface Props {
 }
 
 export const LightContainer = ({ children, height = '100vh' }: Props) => {
-  const bg = useColorModeValue('#fff', '#181818');
+  const bg = useColorModeValue(colors.darkBlue, '#181818');
   return (
     <Box
       minH={height}

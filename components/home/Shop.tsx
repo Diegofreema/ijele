@@ -16,7 +16,7 @@ import { Link } from 'next-view-transitions';
 interface Props {}
 
 export const Shop = ({}: Props) => {
-  const color = useColorModeValue('white', colors.dark);
+  const color = useColorModeValue('white', 'white');
   return (
     <DarkContainer>
       <Box
@@ -77,7 +77,7 @@ export const Shop = ({}: Props) => {
 
           <Link href="/shop">
             <Button
-              bg={colors.orange}
+              bg={colors.darkBlue}
               color={'white'}
               width={'fit-content'}
               px={10}

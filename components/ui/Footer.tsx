@@ -93,7 +93,7 @@ export const Footer = ({}: Props) => {
         {links.map((link) => (
           <Box display={'flex'} flexDir={'column'} gap={5} key={link.label}>
             <Text
-              textColor={color}
+              textColor={'white'}
               fontSize={{ base: 15, md: 20 }}
               fontWeight={'bold'}
               fontFamily={'var(--font-rubik)'}
@@ -115,7 +115,7 @@ export const Footer = ({}: Props) => {
                     }}
                     viewport={{ once: true }}
                     key={subLink.label}
-                    textColor={color}
+                    textColor={'white'}
                     fontSize={{ base: 10, md: 15 }}
                     fontWeight={'400'}
                     fontFamily={'var(--font-rubik)'}
@@ -149,8 +149,8 @@ const socialLinks = [
 ];
 
 const FooterLinks = () => {
-  const bg = useColorModeValue('white', colors.dark);
-  const color = useColorModeValue(colors.dark, 'white');
+  const bg = useColorModeValue('white', 'white');
+  const color = useColorModeValue('white', 'white');
 
   return (
     <Flex gap={5} justifyContent={'center'} mt={5}>
@@ -159,7 +159,7 @@ const FooterLinks = () => {
           <IconButton
             aria-label="icon"
             bg={bg}
-            color={color}
+            color={colors.darkBlue}
             icon={<Icon as={CustomIcon} boxSize={5} />}
           />
         </Link>

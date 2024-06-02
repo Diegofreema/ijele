@@ -13,7 +13,7 @@ const partners = [
     img: '/voe.JPG',
   },
   {
-    link: 'www.afriskaut.com',
+    link: 'https://www.afriskaut.com/',
     img: '/afri.PNG',
   },
   {
@@ -50,12 +50,13 @@ export const Sponsor = ({}: Props) => {
               viewport={{ once: true }}
               key={index}
             >
-              <Link href={item?.link}>
+              <Link href={item?.link} target="_blank">
                 <Image
                   alt="image"
                   key={index}
                   src={item.img}
                   maxWidth={'100%'}
+                  width={'100%'}
                   height={200}
                   borderRadius={200}
                   objectFit={'contain'}

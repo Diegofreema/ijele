@@ -10,7 +10,7 @@ export const OrangeButton = ({ text, ...props }: Props) => {
   return (
     <Button
       {...props}
-      bg={colors.orange}
+      bg={colors.darkBlue}
       _hover={{ bg: colors.textOrange }}
       borderRadius={20}
       color={'white'}

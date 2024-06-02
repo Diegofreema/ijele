@@ -46,7 +46,12 @@ const Left = () => {
       flexDirection={'column'}
       gap={5}
     >
-      <Text textColor={color} fontFamily={'var(--font-rubik)'} fontSize={20}>
+      <Text
+        textColor={color}
+        fontFamily={'var(--font-rubik)'}
+        fontSize={{ base: 20, md: 25 }}
+        fontWeight={'bold'}
+      >
         Membership
       </Text>
       <Text textColor={color} fontFamily={'var(--font-rubik)'} fontSize={15}>
@@ -63,7 +68,7 @@ const Left = () => {
             transition: 'all 0.3s ease',
           }}
           color="white"
-          bg={colors.orange}
+          bg={colors.darkBlue}
           width={'fit-content'}
           borderRadius={20}
         >

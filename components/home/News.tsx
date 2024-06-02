@@ -23,7 +23,7 @@ interface Props {
 }
 const fourArray = [1, 2, 3, 4];
 export const News = ({ news }: Props) => {
-  const bg = useColorModeValue('#091223', '#fff');
+  const bg = useColorModeValue(colors.brown, '#091223');
   const color = useColorModeValue('#fff', '#091223');
   const fourNewsItems = useMemo(() => [...news.slice(0, 4)], [news]);
 
@@ -102,6 +102,7 @@ export const NewCards = ({
         viewport={{ once: true }}
         borderRadius={5}
         cursor={'pointer'}
+        shadow={'xl'}
       >
         <Image
           src={item?.image_url as string}

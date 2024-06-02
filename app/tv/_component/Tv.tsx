@@ -148,8 +148,8 @@ export const Tv = ({ count, videos }: Props) => {
       </Box>
       <Flex justifyContent={'center'} width={'100%'}>
         {videos?.length === 0 && (
-          <MyText
-            text="No videos yet"
+          <CustomTitle
+            title="No videos yet"
             fontSize={{ base: 15, md: 20 }}
             fontWeight={'bold'}
             width={'100%'}
