@@ -54,7 +54,7 @@ export const links = [
   },
 ];
 export const Header = ({}: Props) => {
-  const bg = useColorModeValue(colors.lightBlue, '#181818');
+  const bg = useColorModeValue(colors.darkBlue, '#181818');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -126,9 +126,9 @@ export const Links = ({
         return (
           <Link key={href} href={href} onClick={onPress} className="group">
             <Text
-              className="group-hover:text-[#FF2E3B] transition duration-150 group-hover:-translate-y-1"
+              className="group-hover:text-[#8ad5e7] transition duration-150 group-hover:-translate-y-1"
               fontFamily={'var(--font-rubik)'}
-              textColor={isActive ? colors.orange : 'white'}
+              textColor={isActive ? colors.lightBlue : 'white'}
               fontWeight={'bold'}
             >
               {label}

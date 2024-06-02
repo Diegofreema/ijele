@@ -9,4 +9,5 @@ export const colors = {
   darkBlue: '#3e5caa',
 
   brown: '#e9c365',
+  p: '#83bd5f',
 };
