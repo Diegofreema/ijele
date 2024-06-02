@@ -25,10 +25,7 @@ const packages = [
   {
     packageName: 'Regular Membership',
     price: 'Free',
-    benefits: [
-      'Access to limited discounts and member benefits',
-      'Priority booking for events and programs',
-    ],
+    benefits: ['Access to limited discounts and member benefits'],
   },
   {
     packageName: 'Annual Membership',
