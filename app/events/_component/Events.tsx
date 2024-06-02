@@ -29,16 +29,6 @@ interface Props {
   count: number;
   matches: MatchesType[];
 }
-const headers = ['Date', 'Event', 'Time/Result', 'League', 'Season', 'Venue'];
-
-const roles = [
-  'Sep 5, 2023',
-  'Ijele SC vs Papilo',
-  '8:00pm',
-  'Cup',
-  '19/20',
-  'Owerri',
-];
 
 export const Events = ({ count, matches }: Props) => {
   const bg = useColorModeValue(colors.dark, 'white');
@@ -62,14 +52,14 @@ export const Events = ({ count, matches }: Props) => {
         {' '}
         <Button
           mb={5}
-          bg={isOpen ? colors.orange : colors.textOrange}
+          bg={isOpen ? colors.darkBlue : colors.lightBlue}
           color="white"
           onClick={onOpen}
         >
           {'Fixtures'}
         </Button>
         <Button
-          bg={!isOpen ? colors.orange : colors.textOrange}
+          bg={!isOpen ? colors.darkBlue : colors.lightBlue}
           color="white"
           mb={5}
           onClick={onClose}

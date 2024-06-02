@@ -12,19 +12,19 @@ const images = [
     text: "Men's First Team",
   },
   {
-    img: '/w.png',
+    img: '/frame-man.jpg',
     href: '#',
-    // text: 'Women\'s First Team'
+    text: "Women's First Team",
   },
   {
-    img: '/ac.png',
+    img: '/frame-man.jpg',
     href: '#',
-    // text: 'Academy'
+    text: 'Academy',
   },
   {
-    img: '/basket.png',
+    img: '/frame-man.jpg',
     href: '#',
-    // text: 'Basketball Team'
+    text: 'Basketball Team',
   },
 ];
 export const ImageLinks = ({}: Props) => {
