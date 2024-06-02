@@ -58,7 +58,7 @@ const packages = [
   },
   {
     packageName: 'Honorary President',
-    price: 'N5 million (valid for 2 years)',
+    price: 'N5 million (valid for 3 years)',
     benefits: [
       'Prestigious title of Honorary President',
       ' Leadership role in club initiatives',
