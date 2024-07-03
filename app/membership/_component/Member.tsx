@@ -17,12 +17,14 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { Link } from 'next-view-transitions';
 
 const packages = [
   {
     packageName: 'Regular Membership',
     price: 'Free',
     benefits: ['Access to limited discounts and member benefits'],
+    href: 'https://www.ijelesportsmembership.ng/membership/member?membership=regular',
   },
   {
     packageName: 'Annual Membership',
@@ -31,6 +33,7 @@ const packages = [
       'Annual access to club events and facilities',
       'Priority booking for events and programs',
     ],
+    href: 'https://www.ijelesportsmembership.ng/membership/member?membership=annual',
   },
   {
     packageName: 'Life Membership',
@@ -39,6 +42,7 @@ const packages = [
       'Lifetime access to club events and facilities',
       'Special recognition in club publications',
     ],
+    href: 'https://www.ijelesportsmembership.ng/membership/member?membership=life',
   },
 
   {
@@ -49,15 +53,17 @@ const packages = [
       'Invitations to VIP events and decision-making meetings',
       'Special acknowledgment on our honorary board',
     ],
+    href: 'https://www.ijelesportsmembership.ng/membership/member?membership=honorary-board-membership',
   },
   {
     packageName: 'Honorary President',
-    price: 'N5 million (valid for 3 years)',
+    price: 'N5 million (valid for 2 years)',
     benefits: [
       'Prestigious title of Honorary President',
       ' Leadership role in club initiatives',
       'Comprehensive VIP benefits and high-profile recognition',
     ],
+    href: 'https://www.ijelesportsmembership.ng/membership/member?membership=honorary-president',
   },
   // {
   //   packageName: 'Life Membership',
@@ -142,13 +148,14 @@ type PackageProps = {
   packageName: string;
   benefits: string[];
   price: string;
+  href: string;
 };
 
-const PremiumCards = ({ packageName, benefits, price }: PackageProps) => {
+const PremiumCards = ({ packageName, benefits, price, href }: PackageProps) => {
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} gap={{ base: 5, md: 10 }}>
       <PremiumCard packageName={packageName} price={price} />
-      <Benefits benefits={benefits} />
+      <Benefits benefits={benefits} href={href} />
     </SimpleGrid>
   );
 };
@@ -199,7 +206,7 @@ const PremiumCard = ({
   );
 };
 
-const Benefits = ({ benefits }: { benefits: string[] }) => {
+const Benefits = ({ benefits, href }: { benefits: string[]; href: string }) => {
   const color = useColorModeValue('white', colors.dark);
 
   return (
@@ -229,16 +236,19 @@ const Benefits = ({ benefits }: { benefits: string[] }) => {
         </Flex>
       ))}
 
-      <Button
-        _hover={{
-          bg: colors.lightBlue,
-          transition: { duration: 0.3, ease: 'easeIn' },
-        }}
-        bg={colors.darkBlue}
-        color={'white'}
-      >
-        Join
-      </Button>
+      <Link href={href} className="w-full">
+        <Button
+          _hover={{
+            bg: colors.lightBlue,
+            transition: { duration: 0.3, ease: 'easeIn' },
+          }}
+          bg={colors.darkBlue}
+          width={'100%'}
+          color={'white'}
+        >
+          Join
+        </Button>
+      </Link>
     </Box>
   );
 };
