@@ -2,7 +2,6 @@ import {
   Drawer,
   DrawerBody,
   DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
@@ -10,10 +9,9 @@ import {
   Text,
   Flex,
   Button,
-  Box,
   useColorMode,
 } from '@chakra-ui/react';
-import { Links, ToggleDarkMode, links } from './Header';
+import { links } from './Header';
 import { Link } from 'next-view-transitions';
 import { Moon, Sun } from 'lucide-react';
 import { usePathname } from 'next/navigation';

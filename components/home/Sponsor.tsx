@@ -10,7 +10,7 @@ interface Props {}
 const partners = [
   {
     link: 'https://thevoefoundation.org/',
-    img: '/voe.JPG',
+    img: '/vo.jpeg',
   },
   {
     link: 'https://www.afriskaut.com/',
