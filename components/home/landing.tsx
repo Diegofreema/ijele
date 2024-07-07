@@ -29,7 +29,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'next-view-transitions';
 
 interface Props {}
-const images = ['slide.jpeg', 'slide1.jpeg', 'slide2.jpeg'];
+const images = ['hero.png', 'hero1.png', 'hero2.png'];
 export const Landing = ({}: Props) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
