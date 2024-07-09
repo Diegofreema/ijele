@@ -28,7 +28,7 @@ export const News = ({ news }: Props) => {
   const fourNewsItems = useMemo(() => [...news.slice(0, 4)], [news]);
 
   return (
-    <Box bg={bg} mt={{ base: '20px', md: '50px' }} py={50} minHeight={'400px'}>
+    <Box bg={bg} py={{ base: '20px', md: '50px' }} minHeight={'400px'}>
       <Box width={{ base: '90%', md: '80%' }} mx={'auto'} height={'100%'}>
         <Flex my={10} justifyContent={'space-between'} alignItems={'center'}>
           <Text
@@ -50,7 +50,7 @@ export const News = ({ news }: Props) => {
             </Link>
           )}
         </Flex>
-        <SimpleGrid columns={{ base: 1, md: 4 }} gap={30}>
+        <SimpleGrid columns={{ base: 1, md: 3 }} gap={30}>
           {fourNewsItems?.length > 0 &&
             fourNewsItems.map((item, i) => (
               <NewCards index={i} key={i} item={item} />
@@ -87,6 +87,7 @@ export const NewCards = ({
       <Card
         as={motion.div}
         initial={{ y: 50, opacity: 0 }}
+        minHeight={450}
         whileInView={{
           y: 0,
           opacity: 1,
@@ -109,7 +110,7 @@ export const NewCards = ({
           alt="Green double couch with wooden legs"
           width={'100%'}
           height={250}
-          objectFit={'fill'}
+          objectFit={'cover'}
         />
         <CardBody bg={bg}>
           <Text

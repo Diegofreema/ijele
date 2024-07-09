@@ -193,16 +193,11 @@ const CaptionText = () => {
         victories, celebrate resilience, and embody the true essence of sporting
         excellence and participation.
       </Text>
-      <Link href="/membership">
-        <Button
-          bg={colors.darkBlue}
-          color={'white'}
-          width={'fit-content'}
-          px={10}
-          borderRadius={50}
-        >
-          Join
-        </Button>
+      <Link
+        href="https://www.ijelesportsmembership.ng"
+        className={`py-2 px-10 rounded-[50px] text-white w-fit bg-[#3e5caa]`}
+      >
+        Join
       </Link>
     </Flex>
   );

@@ -6,9 +6,5 @@ interface Props {
 }
 
 export const Wrapper = ({ children }: Props) => {
-  return (
-    <Box minHeight={'100vh'} pb={10}>
-      {children}
-    </Box>
-  );
+  return <Box minHeight={'100vh'}>{children}</Box>;
 };
