@@ -34,11 +34,11 @@ export const Events = ({ count, matches }: Props) => {
   const bg = useColorModeValue(colors.dark, 'white');
   const { isOpen, onClose, onOpen } = useDisclosure();
   const upcomingMatches = useMemo(
-    () => matches?.filter((m) => m.match_result === 'upcoming'),
+    () => matches?.filter((m) => m?.RESULT === 'upcoming'),
     [matches]
   );
   const playedMatches = useMemo(
-    () => matches?.filter((m) => m.match_result !== 'upcoming'),
+    () => matches?.filter((m) => m?.RESULT !== 'upcoming'),
     [matches]
   );
   return (
@@ -147,7 +147,7 @@ const FixtureCard = ({ match }: { match: MatchesType }) => {
           </Flex>
           <Flex alignItems={'center'} gap={3}>
             <Image
-              src={match?.away_team_img}
+              src={match?.away_team_image}
               alt="Green double couch with wooden legs"
               width={100}
               height={100}
