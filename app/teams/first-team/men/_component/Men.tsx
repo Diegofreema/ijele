@@ -22,24 +22,24 @@ type Props = {
 export const Men = ({ mens }: Props): JSX.Element => {
   // console.log(schs.length);
   const forwards = useMemo(
-    () => mens.filter((m) => m.position === 'forward'),
+    () => mens.filter((m) => m?.ROLE === 'forward'),
     [mens]
   );
   const midfielders = useMemo(
-    () => mens.filter((m) => m.position === 'midfielder'),
+    () => mens.filter((m) => m?.ROLE === 'midfielder'),
     [mens]
   );
   const defenders = useMemo(
-    () => mens.filter((m) => m.position === 'defender'),
+    () => mens.filter((m) => m?.ROLE === 'defender'),
     [mens]
   );
   const goalkeepers = useMemo(
-    () => mens.filter((m) => m.position === 'goalkeeper'),
+    () => mens.filter((m) => m?.ROLE === 'goalkeeper'),
     [mens]
   );
 
   const coaches = useMemo(
-    () => mens.filter((m) => m.position === 'coach'),
+    () => mens.filter((m) => m?.ROLE === 'coach'),
     [mens]
   );
 
@@ -118,8 +118,8 @@ const MenCard = ({ men, index }: { men: MenType; index: number }) => {
           fontWeight={'bold'}
         />
         <MyText text={men?.jersey_number.toString()} fontWeight={'bold'} />
-        {men?.role && (
-          <MyText text={men?.role?.toString()} fontWeight={'bold'} />
+        {men?.DUTY && (
+          <MyText text={men?.DUTY?.toString()} fontWeight={'bold'} />
         )}
       </CardFooter>
     </Card>
