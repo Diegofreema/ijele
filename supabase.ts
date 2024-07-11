@@ -559,18 +559,21 @@ export type Database = {
           created_at: string | null;
           id: number;
           VIDEO_TYPE: Database['public']['Enums']['VIDEO_TYPE'] | null;
+          video_url: string;
         };
         Insert: {
           caption?: string | null;
           created_at?: string | null;
           id: number;
           VIDEO_TYPE?: Database['public']['Enums']['VIDEO_TYPE'] | null;
+          video_url?: string;
         };
         Update: {
           caption?: string | null;
           created_at?: string | null;
           id?: number;
           VIDEO_TYPE?: Database['public']['Enums']['VIDEO_TYPE'] | null;
+          video_url?: string;
         };
         Relationships: [];
       };
