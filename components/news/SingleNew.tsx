@@ -19,6 +19,7 @@ import { NewsType } from '@/types';
 import { useEffect, useMemo, useState } from 'react';
 import { format } from 'date-fns';
 import { getNews, getRelatedNews } from '@/actions/data.action';
+import { LightContainer } from '../ui/LightContainer';
 interface Props {
   singleArticle: NewsType;
 }
@@ -65,19 +66,22 @@ const NewsDetails = ({ data }: { data: NewsType }) => {
             text={data?.author_name as string}
             fontWeight={'400'}
             fontSize={{ base: 12, md: 15 }}
+            textColor={'black'}
           />
         </Flex>
         <MyText
-          text={format(data?.created_at, 'eee MMM Y')}
+          text={format(data?.created_at!, 'eee MMM Y')}
           fontWeight={'bold'}
           fontSize={{ base: 12, md: 15 }}
+          textColor={'black'}
         />
       </Flex>
       <SimpleGrid mt={10} gap={5}>
         <MyText
           text={data?.news as string}
-          fontSize={14}
+          fontSize={{ base: 14, md: 16 }}
           fontFamily={'var(--font-rubik)'}
+          textColor={'black'}
         />
       </SimpleGrid>
     </Center>
@@ -105,8 +109,8 @@ const RelatedNews = ({ data }: { data: NewsType }) => {
     getRelatedNew();
   }, [data?.category, data?.id]);
   const color = useColorModeValue('#fff', '#091223');
-  return (
-    <DarkContainer height={'auto'}>
+  return relatedNews.length > 0 ? (
+    <LightContainer height={'auto'}>
       {relatedNews?.length > 0 && (
         <Box width={{ base: '90%', md: '70%' }} mx={'auto'}>
           <Flex my={10} justifyContent={'space-between'} alignItems={'center'}>
@@ -138,6 +142,6 @@ const RelatedNews = ({ data }: { data: NewsType }) => {
           )}
         </Box>
       )}
-    </DarkContainer>
-  );
+    </LightContainer>
+  ) : null;
 };

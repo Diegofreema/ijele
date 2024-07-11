@@ -5,10 +5,10 @@ type Props = TextProps & {
   text: string;
 };
 
-export const MyText = ({ text, ...props }: Props) => {
+export const MyText = ({ text, textColor = 'white', ...props }: Props) => {
   const color = useColorModeValue('#181818', 'white');
   return (
-    <Text {...props} textColor={'white'} fontFamily={'var(--font-rubik)'}>
+    <Text {...props} textColor={textColor} fontFamily={'var(--font-rubik)'}>
       {text}
     </Text>
   );

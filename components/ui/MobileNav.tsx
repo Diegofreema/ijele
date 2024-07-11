@@ -24,15 +24,14 @@ type Props = {
 
 export function MobileDrawer({ isOpen, onClose }: Props) {
   const color = useColorModeValue('black', '#fff');
-  const bg = useColorModeValue('#fff', '#181818');
+  const bg = useColorModeValue(colors.darkBlue, '#181818');
   const { colorMode, toggleColorMode } = useColorMode();
   const pathname = usePathname();
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
       <DrawerOverlay />
-      <DrawerContent bg={bg}>
+      <DrawerContent bg={bg} hideFrom={'md'}>
         <DrawerCloseButton color={color} />
-
         <DrawerBody>
           <Flex
             gap={5}

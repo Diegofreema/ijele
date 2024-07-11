@@ -179,7 +179,7 @@ const CaptionText = () => {
       <Text
         textColor={'#eee'}
         width={{ base: '90%', md: '60%' }}
-        fontSize={{ base: 12, md: 15 }}
+        fontSize={{ base: 15, md: 18 }}
       >
         With a commitment to excellence, teamwork, and community, we strive to
         inspire both on and off the pitch.
@@ -187,7 +187,7 @@ const CaptionText = () => {
       <Text
         textColor={'#eee'}
         width={{ base: '90%', md: '60%' }}
-        fontSize={{ base: 12, md: 15 }}
+        fontSize={{ base: 15, md: 18 }}
       >
         Join the biggest sports club in Nigeria on our journey as we chase
         victories, celebrate resilience, and embody the true essence of sporting

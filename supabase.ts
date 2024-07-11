@@ -9,28 +9,97 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      images: {
+      cart: {
         Row: {
-          created_at: string;
           id: number;
-          image_url: string | null;
+          productId: number | null;
+          quantity: number | null;
+          userId: string | null;
         };
         Insert: {
-          created_at?: string;
           id?: number;
-          image_url?: string | null;
+          productId?: number | null;
+          quantity?: number | null;
+          userId?: string | null;
         };
         Update: {
-          created_at?: string;
           id?: number;
-          image_url?: string | null;
+          productId?: number | null;
+          quantity?: number | null;
+          userId?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'cart_productId_products_id_fk';
+            columns: ['productId'];
+            isOneToOne: false;
+            referencedRelation: 'products';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'cart_userId_users_user_id_fk';
+            columns: ['userId'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['user_id'];
+          }
+        ];
+      };
+      favorite: {
+        Row: {
+          id: number;
+          productId: number | null;
+          userId: string | null;
+        };
+        Insert: {
+          id: number;
+          productId?: number | null;
+          userId?: string | null;
+        };
+        Update: {
+          id?: number;
+          productId?: number | null;
+          userId?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'favorite_productId_products_id_fk';
+            columns: ['productId'];
+            isOneToOne: false;
+            referencedRelation: 'products';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'favorite_userId_users_user_id_fk';
+            columns: ['userId'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['user_id'];
+          }
+        ];
+      };
+      images: {
+        Row: {
+          created_at: string | null;
+          id: number;
+          image_url: string;
+        };
+        Insert: {
+          created_at?: string | null;
+          id: number;
+          image_url: string;
+        };
+        Update: {
+          created_at?: string | null;
+          id?: number;
+          image_url?: string;
         };
         Relationships: [];
       };
       loaned_in: {
         Row: {
           club_id: number | null;
-          created_at: string;
+          created_at: string | null;
           from: string | null;
           id: number;
           player_id: number | null;
@@ -40,9 +109,9 @@ export type Database = {
         };
         Insert: {
           club_id?: number | null;
-          created_at?: string;
+          created_at?: string | null;
           from?: string | null;
-          id?: number;
+          id: number;
           player_id?: number | null;
           to?: string | null;
           wage_paidby_external_club?: number | null;
@@ -50,7 +119,7 @@ export type Database = {
         };
         Update: {
           club_id?: number | null;
-          created_at?: string;
+          created_at?: string | null;
           from?: string | null;
           id?: number;
           player_id?: number | null;
@@ -63,7 +132,7 @@ export type Database = {
       loaned_out: {
         Row: {
           club_id: number | null;
-          created_at: string;
+          created_at: string | null;
           from: string | null;
           id: number;
           player_id: number | null;
@@ -73,9 +142,9 @@ export type Database = {
         };
         Insert: {
           club_id?: number | null;
-          created_at?: string;
+          created_at?: string | null;
           from?: string | null;
-          id?: number;
+          id: number;
           player_id?: number | null;
           to?: string | null;
           wage_paidby_external_club?: number | null;
@@ -83,7 +152,7 @@ export type Database = {
         };
         Update: {
           club_id?: number | null;
-          created_at?: string;
+          created_at?: string | null;
           from?: string | null;
           id?: number;
           player_id?: number | null;
@@ -97,9 +166,9 @@ export type Database = {
         Row: {
           attendance: number | null;
           away_score: number;
-          away_team: string;
-          away_team_img: string;
-          created_at: string;
+          away_team: string | null;
+          away_team_image: string;
+          created_at: string | null;
           date_of_match: string;
           home_score: number;
           home_team: string;
@@ -107,33 +176,33 @@ export type Database = {
           id: number;
           kick_off: string;
           league: string;
-          match_result: Database['public']['Enums']['RESULT'];
           ref_name: string | null;
+          RESULT: Database['public']['Enums']['RESULT'] | null;
           venue: string;
         };
         Insert: {
           attendance?: number | null;
-          away_score?: number;
-          away_team?: string;
-          away_team_img?: string;
-          created_at?: string;
+          away_score: number;
+          away_team?: string | null;
+          away_team_image: string;
+          created_at?: string | null;
           date_of_match: string;
-          home_score?: number;
-          home_team?: string;
-          home_team_img?: string;
-          id?: number;
+          home_score: number;
+          home_team: string;
+          home_team_img: string;
+          id: number;
           kick_off: string;
-          league?: string;
-          match_result: Database['public']['Enums']['RESULT'];
+          league: string;
           ref_name?: string | null;
-          venue?: string;
+          RESULT?: Database['public']['Enums']['RESULT'] | null;
+          venue: string;
         };
         Update: {
           attendance?: number | null;
           away_score?: number;
-          away_team?: string;
-          away_team_img?: string;
-          created_at?: string;
+          away_team?: string | null;
+          away_team_image?: string;
+          created_at?: string | null;
           date_of_match?: string;
           home_score?: number;
           home_team?: string;
@@ -141,8 +210,8 @@ export type Database = {
           id?: number;
           kick_off?: string;
           league?: string;
-          match_result?: Database['public']['Enums']['RESULT'];
           ref_name?: string | null;
+          RESULT?: Database['public']['Enums']['RESULT'] | null;
           venue?: string;
         };
         Relationships: [];
@@ -154,7 +223,8 @@ export type Database = {
           contract_end_date: string;
           contract_start_date: string;
           contract_type: string | null;
-          created_at: string;
+          created_at: string | null;
+          DUTY: Database['public']['Enums']['DUTY'] | null;
           first_name: string;
           height: string;
           id: number;
@@ -168,40 +238,37 @@ export type Database = {
           loan_home: boolean | null;
           middle_name: string | null;
           nationality: string;
-          position: Database['public']['Enums']['ROLE'];
-          role: Database['public']['Enums']['DUTY'] | null;
-          second_position: string | null;
-          skills_description: string | null;
-          state_of_orgin: string;
+          ROLE: Database['public']['Enums']['ROLE'] | null;
+          skill_descriptions: string | null;
+          state_of_origin: string;
           suspended: boolean | null;
           wage_per_week: number;
           weight: string;
         };
         Insert: {
-          age?: string;
+          age: string;
           bio?: string | null;
           contract_end_date: string;
           contract_start_date: string;
           contract_type?: string | null;
-          created_at?: string;
-          first_name?: string;
+          created_at?: string | null;
+          DUTY?: Database['public']['Enums']['DUTY'] | null;
+          first_name: string;
           height: string;
-          id?: number;
-          image_url?: string;
+          id: number;
+          image_url: string;
           injured?: boolean | null;
           jersey_number: number;
-          last_name?: string;
+          last_name: string;
           leave?: boolean | null;
-          lga?: string;
+          lga: string;
           loan_away?: boolean | null;
           loan_home?: boolean | null;
           middle_name?: string | null;
-          nationality?: string;
-          position: Database['public']['Enums']['ROLE'];
-          role?: Database['public']['Enums']['DUTY'] | null;
-          second_position?: string | null;
-          skills_description?: string | null;
-          state_of_orgin?: string;
+          nationality: string;
+          ROLE?: Database['public']['Enums']['ROLE'] | null;
+          skill_descriptions?: string | null;
+          state_of_origin: string;
           suspended?: boolean | null;
           wage_per_week: number;
           weight: string;
@@ -212,7 +279,8 @@ export type Database = {
           contract_end_date?: string;
           contract_start_date?: string;
           contract_type?: string | null;
-          created_at?: string;
+          created_at?: string | null;
+          DUTY?: Database['public']['Enums']['DUTY'] | null;
           first_name?: string;
           height?: string;
           id?: number;
@@ -226,11 +294,9 @@ export type Database = {
           loan_home?: boolean | null;
           middle_name?: string | null;
           nationality?: string;
-          position?: Database['public']['Enums']['ROLE'];
-          role?: Database['public']['Enums']['DUTY'] | null;
-          second_position?: string | null;
-          skills_description?: string | null;
-          state_of_orgin?: string;
+          ROLE?: Database['public']['Enums']['ROLE'] | null;
+          skill_descriptions?: string | null;
+          state_of_origin?: string;
           suspended?: boolean | null;
           wage_per_week?: number;
           weight?: string;
@@ -241,41 +307,118 @@ export type Database = {
         Row: {
           author_name: string | null;
           category: string | null;
-          created_at: string;
+          created_at: string | null;
           id: number;
           image_url: string | null;
-          news: string | null;
+          news: string;
           title: string;
         };
         Insert: {
           author_name?: string | null;
           category?: string | null;
-          created_at?: string;
-          id?: number;
+          created_at?: string | null;
+          id: number;
           image_url?: string | null;
-          news?: string | null;
-          title?: string;
+          news: string;
+          title: string;
         };
         Update: {
           author_name?: string | null;
           category?: string | null;
-          created_at?: string;
+          created_at?: string | null;
           id?: number;
           image_url?: string | null;
-          news?: string | null;
+          news?: string;
           title?: string;
         };
         Relationships: [];
+      };
+      order_items: {
+        Row: {
+          created_at: string | null;
+          id: number;
+          order_id: number | null;
+          productId: number | null;
+          quantity: number;
+        };
+        Insert: {
+          created_at?: string | null;
+          id?: number;
+          order_id?: number | null;
+          productId?: number | null;
+          quantity: number;
+        };
+        Update: {
+          created_at?: string | null;
+          id?: number;
+          order_id?: number | null;
+          productId?: number | null;
+          quantity?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'order_items_order_id_orders_id_fk';
+            columns: ['order_id'];
+            isOneToOne: false;
+            referencedRelation: 'orders';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'order_items_productId_products_id_fk';
+            columns: ['productId'];
+            isOneToOne: false;
+            referencedRelation: 'products';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
+      orders: {
+        Row: {
+          created_at: string | null;
+          customer_id: string;
+          id: number;
+          order_date: string;
+          order_id: string;
+          status: Database['public']['Enums']['order_status'] | null;
+          total_amount: number;
+        };
+        Insert: {
+          created_at?: string | null;
+          customer_id: string;
+          id?: number;
+          order_date?: string;
+          order_id?: string;
+          status?: Database['public']['Enums']['order_status'] | null;
+          total_amount: number;
+        };
+        Update: {
+          created_at?: string | null;
+          customer_id?: string;
+          id?: number;
+          order_date?: string;
+          order_id?: string;
+          status?: Database['public']['Enums']['order_status'] | null;
+          total_amount?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'orders_customer_id_users_user_id_fk';
+            columns: ['customer_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['user_id'];
+          }
+        ];
       };
       players_statistics: {
         Row: {
           appearance: number | null;
           assists: number | null;
-          created_at: string;
+          created_at: string | null;
           goals: number | null;
           id: number;
           name: string | null;
-          player_id: number | null;
+          player_id: number;
           red_cards: number | null;
           year: string | null;
           yellow_cards: number | null;
@@ -283,11 +426,11 @@ export type Database = {
         Insert: {
           appearance?: number | null;
           assists?: number | null;
-          created_at?: string;
+          created_at?: string | null;
           goals?: number | null;
-          id?: number;
+          id: number;
           name?: string | null;
-          player_id?: number | null;
+          player_id: number;
           red_cards?: number | null;
           year?: string | null;
           yellow_cards?: number | null;
@@ -295,18 +438,18 @@ export type Database = {
         Update: {
           appearance?: number | null;
           assists?: number | null;
-          created_at?: string;
+          created_at?: string | null;
           goals?: number | null;
           id?: number;
           name?: string | null;
-          player_id?: number | null;
+          player_id?: number;
           red_cards?: number | null;
           year?: string | null;
           yellow_cards?: number | null;
         };
         Relationships: [
           {
-            foreignKeyName: 'players_statistics_player_id_fkey';
+            foreignKeyName: 'players_statistics_player_id_men_id_fk';
             columns: ['player_id'];
             isOneToOne: false;
             referencedRelation: 'men';
@@ -316,7 +459,8 @@ export type Database = {
       };
       products: {
         Row: {
-          created_at: string;
+          category: string;
+          created_at: string | null;
           description: string;
           id: number;
           image_url: string;
@@ -325,7 +469,8 @@ export type Database = {
           product_name: string;
         };
         Insert: {
-          created_at?: string;
+          category: string;
+          created_at?: string | null;
           description?: string;
           id?: number;
           image_url: string;
@@ -334,7 +479,8 @@ export type Database = {
           product_name: string;
         };
         Update: {
-          created_at?: string;
+          category?: string;
+          created_at?: string | null;
           description?: string;
           id?: number;
           image_url?: string;
@@ -344,27 +490,87 @@ export type Database = {
         };
         Relationships: [];
       };
+      users: {
+        Row: {
+          created_at: string | null;
+          dateOfBirth: string | null;
+          duration: string | null;
+          email: string;
+          first_name: string;
+          gender: string;
+          id: number;
+          img_url: string | null;
+          last_name: string;
+          middle_name: string | null;
+          password: string;
+          phoneNumber: string | null;
+          salutation: string | null;
+          title: string | null;
+          type: Database['public']['Enums']['memberType'] | null;
+          user_id: string;
+          userId: string | null;
+          verified: boolean | null;
+        };
+        Insert: {
+          created_at?: string | null;
+          dateOfBirth?: string | null;
+          duration?: string | null;
+          email?: string;
+          first_name?: string;
+          gender?: string;
+          id?: number;
+          img_url?: string | null;
+          last_name?: string;
+          middle_name?: string | null;
+          password?: string;
+          phoneNumber?: string | null;
+          salutation?: string | null;
+          title?: string | null;
+          type?: Database['public']['Enums']['memberType'] | null;
+          user_id?: string;
+          userId?: string | null;
+          verified?: boolean | null;
+        };
+        Update: {
+          created_at?: string | null;
+          dateOfBirth?: string | null;
+          duration?: string | null;
+          email?: string;
+          first_name?: string;
+          gender?: string;
+          id?: number;
+          img_url?: string | null;
+          last_name?: string;
+          middle_name?: string | null;
+          password?: string;
+          phoneNumber?: string | null;
+          salutation?: string | null;
+          title?: string | null;
+          type?: Database['public']['Enums']['memberType'] | null;
+          user_id?: string;
+          userId?: string | null;
+          verified?: boolean | null;
+        };
+        Relationships: [];
+      };
       videos: {
         Row: {
           caption: string | null;
-          created_at: string;
+          created_at: string | null;
           id: number;
-          type: Database['public']['Enums']['VIDEO_TYPE'];
-          video_url: string;
+          VIDEO_TYPE: Database['public']['Enums']['VIDEO_TYPE'] | null;
         };
         Insert: {
           caption?: string | null;
-          created_at?: string;
-          id?: number;
-          type?: Database['public']['Enums']['VIDEO_TYPE'];
-          video_url?: string;
+          created_at?: string | null;
+          id: number;
+          VIDEO_TYPE?: Database['public']['Enums']['VIDEO_TYPE'] | null;
         };
         Update: {
           caption?: string | null;
-          created_at?: string;
+          created_at?: string | null;
           id?: number;
-          type?: Database['public']['Enums']['VIDEO_TYPE'];
-          video_url?: string;
+          VIDEO_TYPE?: Database['public']['Enums']['VIDEO_TYPE'] | null;
         };
         Relationships: [];
       };
@@ -385,6 +591,13 @@ export type Database = {
         | 'goalkeeper coach'
         | 'set piece coach'
         | 'regular';
+      memberType:
+        | 'regular'
+        | 'honorary-board-membership'
+        | 'honorary-president'
+        | 'life'
+        | 'annual';
+      order_status: 'pending' | 'completed' | 'canceled';
       RESULT:
         | 'win'
         | 'loss'
