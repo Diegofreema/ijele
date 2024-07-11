@@ -13,12 +13,9 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from '@/components/ui/carousel';
 import { VideoType } from '@/types';
 import { useMemo } from 'react';
-import { MyText } from '@/components/ui/MyText';
 
 interface Props {
   count: number;
@@ -29,15 +26,15 @@ export const Tv = ({ count, videos }: Props) => {
   const memoVideos = useMemo(() => [...videos], [videos]);
   const firstVideo = memoVideos?.[0];
   const firstTeam = useMemo(
-    () => videos?.filter((item) => item.type === 'first team'),
+    () => videos?.filter((item) => item.VIDEO_TYPE === 'first team'),
     [videos]
   );
   const academyVideo = useMemo(
-    () => videos?.filter((item) => item.type === 'academy'),
+    () => videos?.filter((item) => item.VIDEO_TYPE === 'academy'),
     [videos]
   );
   const pressConference = useMemo(
-    () => videos?.filter((item) => item.type === 'press conference'),
+    () => videos?.filter((item) => item.VIDEO_TYPE === 'press conference'),
     [videos]
   );
   return (
