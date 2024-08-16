@@ -23,7 +23,7 @@ type Props = {
 };
 
 export function MobileDrawer({ isOpen, onClose }: Props) {
-  const color = useColorModeValue('black', '#fff');
+  const color = useColorModeValue('white', '#fff');
   const bg = useColorModeValue(colors.darkBlue, '#181818');
   const { colorMode, toggleColorMode } = useColorMode();
   const pathname = usePathname();
