@@ -1,37 +1,28 @@
 'use client';
-import { CustomTitle } from '@/app/tv/_component/Tv';
-import { colors } from '@/constants';
-import { MatchesType } from '@/types';
+import {CustomTitle} from '@/app/tv/_component/Tv';
+import {colors} from '@/constants';
+import {MatchesType} from '@/types';
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  Box,
-  useColorModeValue,
-  Card,
-  Image,
-  CardBody,
-  Text,
-  SimpleGrid,
-  Flex,
   Button,
-  useDisclosure,
+  Card,
+  Flex,
+  Image,
+  SimpleGrid,
   SlideFade,
+  Text,
+  useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-import { useMemo } from 'react';
+import {motion} from 'framer-motion';
+import {useMemo} from 'react';
 
 interface Props {
   count: number;
   matches: MatchesType[];
 }
 
-export const Events = ({ count, matches }: Props) => {
-  const bg = useColorModeValue(colors.dark, 'white');
+export const Events = ({ matches }: Props) => {
+
   const { isOpen, onClose, onOpen } = useDisclosure();
   const upcomingMatches = useMemo(
     () => matches?.filter((m) => m?.RESULT === 'upcoming'),
@@ -123,7 +114,7 @@ const FixtureCard = ({ match }: { match: MatchesType }) => {
         <Text textColor={color} fontSize={10} fontWeight={'bold'}>
           {match?.league}
         </Text>
-        <Flex justifyItems={'center'} gap={3} alignItems={'center'}>
+        <Flex justifyItems={'center'} gap={3} alignItems={'center'} flexDirection={{base: 'column', md: 'row'}}>
           <Flex alignItems={'center'} gap={3}>
             <Text textColor={color} fontWeight={'bold'}>
               {match?.home_team}
@@ -158,9 +149,9 @@ const FixtureCard = ({ match }: { match: MatchesType }) => {
             </Text>
           </Flex>
         </Flex>
-        <Button bg={'blue'} color={'white'} borderRadius={0} width={'100%'}>
+        <Flex justifyContent={'center'} py={3} bg={'blue'} color={'white'} borderRadius={0} width={'100%'}>
           {match?.venue}
-        </Button>
+        </Flex>
       </Flex>
     </Card>
   );
