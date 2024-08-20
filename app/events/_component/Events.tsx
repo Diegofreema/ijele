@@ -1,7 +1,7 @@
 'use client';
-import {CustomTitle} from '@/app/tv/_component/Tv';
-import {colors} from '@/constants';
-import {MatchesType} from '@/types';
+import { CustomTitle } from '@/app/tv/_component/Tv';
+import { colors } from '@/constants';
+import { MatchesType } from '@/types';
 import {
   Button,
   Card,
@@ -13,8 +13,8 @@ import {
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
-import {motion} from 'framer-motion';
-import {useMemo} from 'react';
+import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 
 interface Props {
   count: number;
@@ -22,7 +22,6 @@ interface Props {
 }
 
 export const Events = ({ matches }: Props) => {
-
   const { isOpen, onClose, onOpen } = useDisclosure();
   const upcomingMatches = useMemo(
     () => matches?.filter((m) => m?.RESULT === 'upcoming'),
@@ -60,7 +59,9 @@ export const Events = ({ matches }: Props) => {
       </Flex>
       <SlideFade in={isOpen}>
         {upcomingMatches?.length > 0 &&
-          upcomingMatches?.map((m, i) => <FixtureCard key={i} match={m} />)}
+          upcomingMatches?.map((m, i) => (
+            <FixtureCard ticket key={i} match={m} />
+          ))}
         {upcomingMatches?.length === 0 && (
           <CustomTitle title="No data yet" textAlign={'center'} />
         )}
@@ -77,7 +78,13 @@ export const Events = ({ matches }: Props) => {
   );
 };
 
-const FixtureCard = ({ match }: { match: MatchesType }) => {
+const FixtureCard = ({
+  match,
+  ticket,
+}: {
+  match: MatchesType;
+  ticket?: boolean;
+}) => {
   const color = useColorModeValue('#181818', '#fff');
   const bg = useColorModeValue('#fff', '#181818');
   return (
@@ -110,11 +117,22 @@ const FixtureCard = ({ match }: { match: MatchesType }) => {
         alignItems={'center'}
         justifyContent={'center'}
       >
+        <Flex justifyItems={'center'} gap={3} alignItems={'center'}>
+          <Text textColor={color}>{match?.ticket_price} tickets left</Text>
+          <Button textColor={color} fontSize={15} fontWeight={'bold'}>
+            Buy ticket for ₦{match?.ticket_price}
+          </Button>
+        </Flex>
         <Text textColor={color}>WED 24 JUL 2024</Text>
         <Text textColor={color} fontSize={10} fontWeight={'bold'}>
           {match?.league}
         </Text>
-        <Flex justifyItems={'center'} gap={3} alignItems={'center'} flexDirection={{base: 'column', md: 'row'}}>
+        <Flex
+          justifyItems={'center'}
+          gap={3}
+          alignItems={'center'}
+          flexDirection={{ base: 'column', md: 'row' }}
+        >
           <Flex alignItems={'center'} gap={3}>
             <Text textColor={color} fontWeight={'bold'}>
               {match?.home_team}
@@ -149,7 +167,14 @@ const FixtureCard = ({ match }: { match: MatchesType }) => {
             </Text>
           </Flex>
         </Flex>
-        <Flex justifyContent={'center'} py={3} bg={'blue'} color={'white'} borderRadius={0} width={'100%'}>
+        <Flex
+          justifyContent={'center'}
+          py={3}
+          bg={'blue'}
+          color={'white'}
+          borderRadius={0}
+          width={'100%'}
+        >
           {match?.venue}
         </Flex>
       </Flex>
