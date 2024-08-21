@@ -37,7 +37,6 @@ export const PaymentModal = ({
     phoneNumber: '',
   });
   console.log(
-    '',
     process.env.NEXT_PUBLIC_CONTRACT,
     process.env.NEXT_PUBLIC_MONNIFY
   );
@@ -161,8 +160,9 @@ export const PaymentModal = ({
   const initializePayment = usePayWithMonnifyPayment(config);
   const onPay = () => {
     console.log('pressed');
-
+    onCloseFn();
     initializePayment(onLoadStart, onLoadComplete, onComplete, onClose);
+    console.log('after press');
   };
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
@@ -171,10 +171,19 @@ export const PaymentModal = ({
       [name]: value,
     });
   };
+  const onCloseModal = () => {
+    setValues({
+      email: '',
+      fullName: '',
+      phoneNumber: '',
+    });
 
+    onCloseFn();
+  };
   const hasEmptyValues = Object.entries(values)
     .map(([key, value]) => value === '')
     .includes(true);
+  const isValidEmail = values.email.includes('@');
   return (
     <Modal isOpen={isOpen} onClose={onCloseFn}>
       <ModalOverlay />
@@ -189,7 +198,7 @@ export const PaymentModal = ({
             onChange={handleChange}
           />
           <Input
-            placeholder="Email"
+            placeholder="A valid Email"
             name="email"
             type="email"
             value={values.email}
@@ -204,16 +213,11 @@ export const PaymentModal = ({
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={onCloseFn}>
+          <Button colorScheme="blue" mr={3} onClick={onCloseModal}>
             Close
           </Button>
-          {!hasEmptyValues && (
-            <Button
-              variant="ghost"
-              onClick={onPay}
-              isLoading={submitting}
-              loadingText="processing..."
-            >
+          {!hasEmptyValues && isValidEmail && (
+            <Button variant="ghost" onClick={onPay}>
               Pay
             </Button>
           )}
