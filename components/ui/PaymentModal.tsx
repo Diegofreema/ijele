@@ -66,24 +66,6 @@ export const PaymentModal = ({
     console.log('SDK is UP');
   };
 
-  const testBuy = async () => {
-    setSubmitting(true);
-    try {
-      const { message } = await buyTicket({
-        email: values.email,
-        name: values?.fullName,
-        phone: values.phoneNumber,
-        id,
-      });
-
-      console.log(message);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   const onComplete = (res: CompleteResponesProps) => {
     //Implement what happens when the transaction is completed.
     setSubmitting(true);
@@ -160,7 +142,7 @@ export const PaymentModal = ({
   const initializePayment = usePayWithMonnifyPayment(config);
   const onPay = () => {
     console.log('pressed');
-    onCloseFn();
+
     initializePayment(onLoadStart, onLoadComplete, onComplete, onClose);
     console.log('after press');
   };
@@ -198,7 +180,7 @@ export const PaymentModal = ({
             onChange={handleChange}
           />
           <Input
-            placeholder="A valid Email"
+            placeholder="Must be a valid Email"
             name="email"
             type="email"
             value={values.email}
