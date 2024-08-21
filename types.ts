@@ -62,3 +62,10 @@ export type TypeMen = {
   state_of_orgin: string;
   weight: string;
 };
+
+export type BuyType = {
+  id: number;
+  email: string;
+  name: string;
+  phone: string;
+};

@@ -11,11 +11,11 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
-import {links} from './Header';
-import {Link} from 'next-view-transitions';
-import {Moon, Sun} from 'lucide-react';
-import {usePathname} from 'next/navigation';
-import {colors} from '@/constants';
+import { links } from './Header';
+import { Link } from 'next-view-transitions';
+import { Moon, Sun } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { colors } from '@/constants';
 
 type Props = {
   isOpen: boolean;
@@ -30,7 +30,7 @@ export function MobileDrawer({ isOpen, onClose }: Props) {
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
       <DrawerOverlay />
-      <DrawerContent bg={bg} hideFrom={'md'} width={'50%'}>
+      <DrawerContent bg={bg} hideFrom={'lg'} width={'50%'}>
         <DrawerCloseButton color={color} />
         <DrawerBody>
           <Flex

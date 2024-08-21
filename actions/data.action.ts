@@ -1,9 +1,15 @@
 'use server';
 
+import TicketEmail from '@/emails';
+import { BuyType } from '@/types';
+import { transporter } from '@/utils/nodemailer';
 import { createClient } from '@/utils/supabase/server';
+import { render } from '@react-email/components';
+import { format } from 'date-fns';
 
 export const getNews = async (page: number = 1) => {
   const suapabase = createClient();
+
   const limit = 10;
   const offset = page * limit;
   const { data, error } = await suapabase.from('news').select().limit(offset);
@@ -210,4 +216,62 @@ export const getTotalMatches = async () => {
   }
 
   return count;
+};
+
+export const buyTicket = async (values: BuyType) => {
+  const suapabase = createClient();
+  const { data, error } = await suapabase
+    .from('ticket')
+    .insert({
+      name: values.name,
+      match_id: values.id,
+      phone: values.phone,
+      email: values.email,
+    })
+    .select('*,match_id(*)')
+    .single();
+
+  if (error) {
+    console.log(error);
+
+    return { message: 'failed' };
+  }
+
+  if (data) {
+    console.log(data?.match_id);
+
+    const { error } = await suapabase
+      .from('matches')
+      .update({ ticket_available: data.match_id.ticket_available - 1 })
+      .eq('id', values.id);
+    const emailHtml = render(
+      TicketEmail({
+        name: values.name,
+        price: data?.match_id.ticket_price as string,
+        venue: data?.match_id?.venue as string,
+        ticketId: data?.ticketId as string,
+        matchDate: data.match_id.date_of_match,
+        awayImage: data.match_id.away_team_image,
+        awayTeam: data?.match_id.away_team,
+        homeImage: data?.match_id.home_team_img,
+        homeTeam: data?.match_id.home_team,
+        kickoff: data?.match_id.kick_off,
+        phone: values.phone,
+      })
+    );
+
+    const options = {
+      from: `Ijele SC <${process.env.USER}>`,
+      to: values.email,
+      subject: 'Ticket Purchase',
+      html: emailHtml,
+    };
+
+    const res = await transporter.sendMail(options);
+    console.log(res);
+
+    return { message: 'success' };
+  }
+
+  return { message: 'failed' };
 };

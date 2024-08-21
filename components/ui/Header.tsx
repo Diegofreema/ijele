@@ -95,7 +95,7 @@ export const Header = ({}: Props) => {
         <ToggleDarkMode />
         <MobileDrawer isOpen={isOpen} onClose={onClose} />
         <IconButton
-          hideFrom="md"
+          hideFrom="lg"
           onClick={onOpen}
           aria-label="button"
           icon={<MenuIcon />}
@@ -120,7 +120,7 @@ export const Links = ({
   };
 
   return (
-    <Flex gap={5} hideBelow={'md'} flexDirection={flexDirection}>
+    <Flex gap={5} hideBelow={'lg'} flexDirection={flexDirection}>
       {links.map(({ href, label }) => {
         const isActive = pathname.includes(href);
         return (
@@ -148,7 +148,7 @@ export const ToggleDarkMode = () => {
 
   return (
     <Button
-      hideBelow={'md'}
+      hideBelow={'lg'}
       borderRadius={50}
       width={50}
       height={50}
