@@ -36,6 +36,12 @@ export const PaymentModal = ({
     email: '',
     phoneNumber: '',
   });
+  console.log(
+    '',
+    process.env.NEXT_PUBLIC_CONTRACT,
+    process.env.NEXT_PUBLIC_MONNIFY
+  );
+
   const [submitting, setSubmitting] = useState(false);
   const toast = useToast();
   const config: MonnifyProps = {
@@ -50,7 +56,7 @@ export const PaymentModal = ({
     metadata: {
       name: values.fullName,
     },
-
+    isTestMode: false,
     customerPhoneNumber: values.phoneNumber,
   };
 
@@ -154,6 +160,8 @@ export const PaymentModal = ({
   };
   const initializePayment = usePayWithMonnifyPayment(config);
   const onPay = () => {
+    console.log('pressed');
+
     initializePayment(onLoadStart, onLoadComplete, onComplete, onClose);
   };
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -202,7 +210,7 @@ export const PaymentModal = ({
           {!hasEmptyValues && (
             <Button
               variant="ghost"
-              onClick={testBuy}
+              onClick={onPay}
               isLoading={submitting}
               loadingText="processing..."
             >
