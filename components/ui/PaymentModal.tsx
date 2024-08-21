@@ -1,4 +1,5 @@
 import { buyTicket } from '@/actions/data.action';
+import { TicketEnum } from '@/types';
 import {
   Button,
   Input,
@@ -23,6 +24,7 @@ type Props = {
   onCloseFn: () => void;
   id: number;
   price: number;
+  type: TicketEnum;
 };
 
 export const PaymentModal = ({
@@ -30,6 +32,7 @@ export const PaymentModal = ({
   isOpen,
   onCloseFn,
   price,
+  type,
 }: Props): JSX.Element => {
   const [values, setValues] = useState({
     fullName: '',
@@ -75,6 +78,7 @@ export const PaymentModal = ({
         name: values?.fullName,
         phone: values.phoneNumber,
         id,
+        type,
       })
         .then((res) => {
           if (res?.message === 'failed') {

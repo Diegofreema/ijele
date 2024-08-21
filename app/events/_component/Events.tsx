@@ -3,7 +3,7 @@ import { CustomTitle } from '@/app/tv/_component/Tv';
 import { OrangeButton } from '@/components/ui/OrangeButton';
 import { PaymentModal } from '@/components/ui/PaymentModal';
 import { colors } from '@/constants';
-import { MatchesType } from '@/types';
+import { MatchesType, TicketEnum } from '@/types';
 import { createClient } from '@/utils/supabase/client';
 import {
   Button,
@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 interface Props {
   count: number;
@@ -112,20 +112,32 @@ const FixtureCard = ({
   ticket?: boolean;
 }) => {
   const color = useColorModeValue('#181818', '#fff');
+  const [selectedType, setSelectedType] = useState<TicketEnum>('Regular');
   const bg = useColorModeValue('#fff', '#181818');
+  const price =
+    selectedType === 'Regular'
+      ? match?.ticket_price
+      : selectedType === 'VIP'
+      ? match?.vip_price
+      : match?.vvip_price;
   const { isOpen, onClose, onOpen } = useDisclosure();
   const availableTicket = match?.ticket_available || 0;
   const thereIsTicket = availableTicket > 1;
   const ticketText = thereIsTicket
     ? `${match?.ticket_available} tickets left`
     : 'Sold out';
+  const handleOpenModal = (type: TicketEnum) => {
+    setSelectedType(type);
+    onOpen();
+  };
   return (
     <>
       <PaymentModal
         id={match.id}
         isOpen={isOpen}
         onCloseFn={onClose}
-        price={match.ticket_price || 0}
+        price={price || 0}
+        type={selectedType}
       />
       <Card
         mb={6}
@@ -158,15 +170,36 @@ const FixtureCard = ({
         >
           {ticket && (
             <>
-              <OrangeButton
-                text={` Buy ticket for ₦${match?.ticket_price}`}
-                textColor={color}
-                fontSize={15}
-                onClick={onOpen}
-                fontWeight={'bold'}
-                zIndex={55}
-                isDisabled={!thereIsTicket}
-              />
+              <CustomTitle title="Tickets" />
+              <Flex gap={5}>
+                <OrangeButton
+                  text={` Regular ₦${match?.ticket_price}`}
+                  textColor={color}
+                  fontSize={15}
+                  onClick={() => handleOpenModal('Regular')}
+                  fontWeight={'bold'}
+                  zIndex={55}
+                  isDisabled={!thereIsTicket}
+                />
+                <OrangeButton
+                  text={`Vip ₦${match?.vip_price}`}
+                  textColor={color}
+                  fontSize={15}
+                  onClick={() => handleOpenModal('VIP')}
+                  fontWeight={'bold'}
+                  zIndex={55}
+                  isDisabled={!thereIsTicket}
+                />
+                <OrangeButton
+                  text={` VVIP ₦${match?.vvip_price}`}
+                  textColor={color}
+                  fontSize={15}
+                  onClick={() => handleOpenModal('VVIP')}
+                  fontWeight={'bold'}
+                  zIndex={55}
+                  isDisabled={!thereIsTicket}
+                />
+              </Flex>
               <Flex justifyItems={'center'} gap={3} alignItems={'center'}>
                 <Text textColor={color}>{ticketText}</Text>
               </Flex>

@@ -1,3 +1,4 @@
+import { TicketEnum } from '@/types';
 import {
   Body,
   Container,
@@ -30,6 +31,7 @@ type Props = {
   homeImage: string;
   kickoff: string;
   phone: string;
+  ticketType: TicketEnum;
 };
 
 export const TicketEmail = ({
@@ -44,6 +46,7 @@ export const TicketEmail = ({
   homeImage,
   kickoff,
   phone,
+  ticketType,
 }: Props) => (
   <Html>
     <Head />
@@ -124,9 +127,15 @@ export const TicketEmail = ({
             </Column>
           </Row>
         </Section>
+        <Section>
+          <Text style={{ fontWeight: 'bolder', fontSize: 30, color: 'white' }}>
+            {ticketType}
+          </Text>
+        </Section>
         <Section style={productTitleTable}>
           <Text style={productsTitle}>MATCH INFO</Text>
         </Section>
+
         <Section>
           <Row>
             <Column style={{ width: '64px' }}>

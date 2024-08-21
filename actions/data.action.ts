@@ -227,6 +227,7 @@ export const buyTicket = async (values: BuyType) => {
       match_id: values.id,
       phone: values.phone,
       email: values.email,
+      ticket_type: values.type,
     })
     .select('*,match_id(*)')
     .single();
@@ -257,6 +258,7 @@ export const buyTicket = async (values: BuyType) => {
         homeTeam: data?.match_id.home_team,
         kickoff: data?.match_id.kick_off,
         phone: values.phone,
+        ticketType: values.type,
       })
     );
 

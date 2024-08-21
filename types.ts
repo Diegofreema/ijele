@@ -19,6 +19,7 @@ export type PType = {
   product_name: string;
 };
 export type MatchResult = Database['public']['Enums']['RESULT'];
+export type TicketEnum = Database['public']['Enums']['ticket_type'];
 export type PositionEnum = Database['public']['Enums']['ROLE'];
 export type MatchType = {
   attendance: number;
@@ -68,4 +69,5 @@ export type BuyType = {
   email: string;
   name: string;
   phone: string;
+  type: TicketEnum;
 };
