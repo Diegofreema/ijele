@@ -200,9 +200,11 @@ const FixtureCard = ({
                   isDisabled={!thereIsTicket}
                 />
               </Flex>
-              <Flex justifyItems={'center'} gap={3} alignItems={'center'}>
-                <Text textColor={color}>{ticketText}</Text>
-              </Flex>
+              {!thereIsTicket && (
+                <Flex justifyItems={'center'} gap={3} alignItems={'center'}>
+                  <Text textColor={color}>Sold out</Text>
+                </Flex>
+              )}
             </>
           )}
           <Text textColor={color}>WED 24 JUL 2024</Text>

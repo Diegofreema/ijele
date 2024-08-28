@@ -263,7 +263,7 @@ export const buyTicket = async (values: BuyType) => {
     );
 
     const options = {
-      from: `Ijele SC <${process.env.USER}>`,
+      from: `Diego from Ijele SC <${process.env.USER}>`,
       to: values.email,
       subject: 'Ticket Purchase',
       html: emailHtml,
