@@ -194,7 +194,7 @@ const CaptionText = () => {
         excellence and participation.
       </Text>
       <Link
-        href="https://www.ijelesportsmembership.ng"
+        href="https://paylink.monnify.com/ijelescmembership"
         className={`py-2 px-10 rounded-[50px] text-white w-fit bg-[#3e5caa]`}
       >
         Join
